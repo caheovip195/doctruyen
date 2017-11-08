@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Window;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -47,12 +50,23 @@ public class ManHinhLoad extends AppCompatActivity {
                 finish();
             }
             else{
-                loadData();
+                final Dialog dialog =new Dialog(this);
+                dialog.setContentView(R.layout.loadprogressbar);
+                dialog.setCanceledOnTouchOutside(false);
+                dialog.setCancelable(false);
+                dialog.show();
+                loadData(dialog);
             }
         }
         else{
            if(checkInternet()){
-               loadData();
+                Dialog dialog =new Dialog(this);
+               dialog.setContentView(R.layout.loadprogressbar);
+               dialog.setCanceledOnTouchOutside(false);
+               dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+               dialog.setCancelable(false);
+               dialog.show();
+               loadData(dialog);
            }
            else {
                Dialog dialog=new Dialog(this);
@@ -83,7 +97,7 @@ public class ManHinhLoad extends AppCompatActivity {
             return false;
         }
     }
-    private void loadData() {
+    private void loadData(final Dialog dialog) {
         JsonObjectRequest objCategory=new JsonObjectRequest(api_data.Category, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -96,6 +110,7 @@ public class ManHinhLoad extends AppCompatActivity {
                         ContentValues contentValues =new ContentValues();
                         contentValues.put("cat_id",resultcategory.getString("cat_id"));
                         contentValues.put("cat_name",resultcategory.getString("cat_name"));
+                        contentValues.put("url_image",resultcategory.getString("url_image"));
                         database.insert("Category",null,contentValues);
                         Log.e("ten",resultcategory.getString("cat_id"));
                     }
@@ -103,9 +118,11 @@ public class ManHinhLoad extends AppCompatActivity {
                     SharedPreferences.Editor editor =sharedPreferences.edit();
                     editor.putInt("category",arr.length());
                     editor.commit();
+                    dialog.cancel();
                     Intent intent =getIntent();
                     finish();
                     startActivity(intent);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
