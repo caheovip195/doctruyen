@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/doctruyen"
+            android:icon="?android:attr/actionModeCopyDrawable"
+            android:title="Đọc Truyện" />
+        <item
+            android:id="@+id/tddau"
+            android:icon="@android:drawable/ic_input_get"
+            android:title="Truyện Đã Đánh Dấu" />
+        <item
+            android:id="@+id/danhgia"
+            android:icon="@android:drawable/stat_notify_chat"
+            android:title="Đánh Giá" />
+        <item
+            android:id="@+id/tapp"
+            android:icon="@drawable/search"
+            android:title="Tìm App" />
+        <item
+            android:id="@+id/ttapp"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="Thông Tin App" />
+
+    </group>
+
+    <item android:title="Thêm">
+        <menu>
+            <item
+                android:id="@+id/share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/thoat"
+                android:icon="@android:drawable/ic_notification_clear_all"
+                android:title="Thoát" />
+        </menu>
+    </item>
+
+</menu>
