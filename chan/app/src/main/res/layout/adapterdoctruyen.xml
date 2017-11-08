@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="105dp">
+   <LinearLayout
+       android:gravity="center"
+       android:layout_width="match_parent"
+       android:layout_height="105dp"
+       android:orientation="horizontal">
+      <ImageView
+          android:layout_marginRight="5dp"
+       android:layout_marginLeft="5dp"
+       android:src="@drawable/anhdoctruyen"
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+       android:id="@+id/imgdoctruyen"
+       android:scaleType="centerCrop"/>
+
+       <TextView
+           android:id="@+id/txtdoctruyen"
+           android:gravity="center"
+           android:layout_width="match_parent"
+           android:layout_height="50dp" />
+   </LinearLayout>
+</LinearLayout>
