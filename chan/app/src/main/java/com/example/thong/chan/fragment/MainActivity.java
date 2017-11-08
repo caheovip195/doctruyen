@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(Intent.createChooser(intenShare, "Chia sẻ app với bạn bè của bạn"));
         } else if (id == R.id.thoat) {
             closeContextMenu();
-        }
+            }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

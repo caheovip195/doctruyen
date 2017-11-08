@@ -23,44 +23,44 @@ public class ThongTinApp extends Fragment implements View.OnClickListener {
     private View mview1;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         mview1 = inflater.inflate(R.layout.thong_tin_app, container, false);
         getUiInitiazalization();
         return mview1;
-
     }
 
     public void getUiInitiazalization() {
-        btn = (Button) mview1.findViewById(R.id.btnsendemail);
-        btn.setOnClickListener(this);
+        Button startBtn = (Button) mview1.findViewById(R.id.btnsendemail);
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                sendEmail();
+            }
+        });
 
+    }
+
+    protected void sendEmail() {
+        Log.i("Send email", "");
+        String[] TO = {"tnthong.oplai@gmail.com"};
+        String[] CC = {"congnt95.oplai@gmail.com"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Tiêu Đề");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Nội dung Email");
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Gửi Email..."));
+
+            Log.i("Finished...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(getActivity(), "Đã gửi thư !", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnsendemail:
 
-                Log.i("Send email", "");
-                String[] TO = {"tnthong.oplai@gmail.com"};
-                String[] CC = {"ntcong95.oplai@gmail.com"};
-                Intent emailIntent = new Intent(Intent.EXTRA_EMAIL);
-                emailIntent.setData(Uri.parse("mailto:"));
-                emailIntent.setType("text/plain");
-
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-                emailIntent.putExtra(Intent.EXTRA_CC, CC);
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
-                startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-                try {
-                    startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-                    onStop();
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(getActivity(), "Cảm ơn bạn đã phản hồi vào email của chúng tôi", Toast.LENGTH_SHORT).show();
-                }
-        }
     }
 }
