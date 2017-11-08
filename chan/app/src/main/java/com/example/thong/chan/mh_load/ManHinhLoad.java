@@ -1,37 +1,27 @@
 package com.example.thong.chan.mh_load;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.app.ProgressDialog;
-import android.app.usage.NetworkStatsManager;
+import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.thong.chan.api_data;
 import com.example.thong.chan.fragment.MainActivity;
 import com.example.thong.chan.R;
-import com.example.thong.chan.fragment.ManHinhChinh;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,7 +29,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class ManHinhLoad extends AppCompatActivity {
-
+    SQLiteDatabase database;
     private static final String DATABASE_PATH="/databases/";
     String DATABASE_NAME="doctruyen.sqlite";
 
@@ -48,14 +38,42 @@ public class ManHinhLoad extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_load);
         copyDataBaseFromAsset();
-        loadData();
+        if(getCountItemDatabase()>0){
+            SharedPreferences sharedPreferences =getSharedPreferences("item_sum",MODE_PRIVATE);
+            int sum_item =sharedPreferences.getInt("category",0);
+            if(sum_item==getCountItemDatabase()){
+                Intent intent =new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            else{
+                loadData();
+            }
+        }
+        else{
+           if(checkInternet()){
+               loadData();
+           }
+           else {
+               Dialog dialog=new Dialog(this);
+               dialog.setCancelable(false);
+               dialog.setTitle("Not connected internet !");
+               dialog.setCanceledOnTouchOutside(false);
+               dialog.show();
+           }
+        }
+
     }
-
-    private boolean checkdata(){
-
-        return false;
-    }
-
+     private int getCountItemDatabase(){
+         int t=0;
+         database=openOrCreateDatabase(DATABASE_NAME,MODE_PRIVATE,null);
+         Cursor cursor =database.rawQuery("select id from Category",null);
+         while (cursor.moveToNext()){
+             t=t+1;
+         }
+         cursor.close();
+        return t;
+     }
     private boolean checkInternet(){
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         if(connectivityManager.getActiveNetworkInfo()!=null){
@@ -71,12 +89,22 @@ public class ManHinhLoad extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray arr=response.getJSONArray("results");
+                    database =openOrCreateDatabase(DATABASE_NAME,MODE_PRIVATE,null);
+                    database.delete("Category",null,null);
                     for(int i=0;i<arr.length();i++){
                         JSONObject resultcategory =arr.getJSONObject(i);
+                        ContentValues contentValues =new ContentValues();
+                        contentValues.put("cat_id",resultcategory.getString("cat_id"));
+                        contentValues.put("cat_name",resultcategory.getString("cat_name"));
+                        database.insert("Category",null,contentValues);
                         Log.e("ten",resultcategory.getString("cat_id"));
-
                     }
-                    Intent intent =new Intent(getApplicationContext(),MainActivity.class);
+                    SharedPreferences sharedPreferences =getSharedPreferences("item_sum",MODE_PRIVATE);
+                    SharedPreferences.Editor editor =sharedPreferences.edit();
+                    editor.putInt("category",arr.length());
+                    editor.commit();
+                    Intent intent =getIntent();
+                    finish();
                     startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
