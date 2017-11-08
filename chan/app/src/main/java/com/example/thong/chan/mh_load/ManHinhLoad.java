@@ -55,7 +55,7 @@ public class ManHinhLoad extends Activity {
         };
         timerThread.start();
 
-        String url="https://api.github.com/users";
+        String url="http://hd24h.edu.vn/api/get_category_posts?id=71&count=20&page=";
         JsonArrayRequest request =new JsonArrayRequest(Request.Method.GET, url,null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
