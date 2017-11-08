@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/trangchu"
+            android:title="Trang Chủ"
+            android:icon="@drawable/home_mobile"/>
+        <item
             android:id="@+id/doctruyen"
             android:icon="?android:attr/actionModeCopyDrawable"
             android:title="Đọc Truyện" />

@@ -24,10 +24,13 @@ import com.example.thong.chan.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Toolbar toolbar;
+    DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        /*requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.getWindow().getDecorView().setSystemUiVisibility(
@@ -36,13 +39,13 @@ public class MainActivity extends AppCompatActivity
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE);*/
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+         toolbar = (Toolbar) findViewById(R.id.toolbar);
+         setSupportActionBar(toolbar);
+         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -53,7 +56,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -89,11 +91,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentManager fragmentManager = getFragmentManager();
+        if(id== R.id.trangchu){
+            changeFragment(new ManHinhChinh());
+        }
+        else
         if (id == R.id.doctruyen) {
             // Handle the camera action
             changeFragment(new DocTruyen());
+            toolbar.setTitle("Đọc Truyện");
         } else if (id == R.id.tddau) {
             changeFragment(new TruyenDaDanhDau());
+            toolbar.setTitle("Truyện Đã Đánh Dấu");
         } else if (id == R.id.danhgia) {
             DanhGia.app_launched(this);
         } else if (id == R.id.tapp) {
@@ -112,6 +120,7 @@ public class MainActivity extends AppCompatActivity
             }
         } else if (id == R.id.ttapp) {
             changeFragment(new ThongTinApp());
+            toolbar.setTitle("Thông Tin App");
         } else if (id == R.id.share) {
             String linkApp = "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName();
             Intent intenShare = new Intent(Intent.ACTION_SEND);
