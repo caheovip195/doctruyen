@@ -10,16 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:background="#3a89e9"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:titleTextColor="#000"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     </android.support.design.widget.AppBarLayout>
-
     <include layout="@layout/content_main" />
 
 </android.support.design.widget.CoordinatorLayout>
