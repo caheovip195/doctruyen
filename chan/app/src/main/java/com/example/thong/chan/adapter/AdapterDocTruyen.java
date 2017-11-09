@@ -23,10 +23,6 @@ import com.example.thong.chan.mh_load.SubCate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ThanhCong on 08/11/2017.
- */
-
 public class AdapterDocTruyen extends RecyclerView.Adapter<AdapterDocTruyen.RecyclerViewHolder>{
     List<Category>dschude =new ArrayList<>();
     List<SubCate>dscate=new ArrayList<>();
@@ -60,7 +56,6 @@ public class AdapterDocTruyen extends RecyclerView.Adapter<AdapterDocTruyen.Recy
     holder.layout.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-           // Toast.makeText(context, ""+dschude.get(position).getCat_id(), Toast.LENGTH_LONG).show();
             Bundle agruments =new Bundle();
             agruments.putString("cat_id",dschude.get(position).getCat_id());
             ChuDeTruyen chuDeTruyen =new ChuDeTruyen();

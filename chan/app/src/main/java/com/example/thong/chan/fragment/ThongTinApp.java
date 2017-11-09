@@ -1,8 +1,10 @@
 package com.example.thong.chan.fragment;
 
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.nfc.Tag;
@@ -65,6 +67,10 @@ public class ThongTinApp extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
+        Fragment newFragment = new ManHinhChinh();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_frame, newFragment);
+        transaction.addToBackStack(null);
     }
+
 }
