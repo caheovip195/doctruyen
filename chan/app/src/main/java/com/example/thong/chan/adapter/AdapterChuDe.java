@@ -18,6 +18,7 @@ import com.example.thong.chan.R;
 import com.example.thong.chan.fragment.ChuDeTruyen;
 import com.example.thong.chan.fragment.TenTruyen;
 import com.example.thong.chan.mh_load.SubCate;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
     @Override
     public void onBindViewHolder(RecycleViewHoder holder, final int position) {
              holder.txt.setText(ds.get(position).getSub_cat_name());
+             holder.txtstt.setText((position+1)+"");
              holder.layout.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
@@ -56,6 +58,7 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
                      transaction.commit();
                  }
              });
+        Picasso.with(activity).load(ds.get(position).getImage()).error(R.drawable.as).into(holder.img);
     }
 
     @Override
@@ -64,13 +67,14 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
     }
 
     public class RecycleViewHoder extends RecyclerView.ViewHolder{
-     TextView txt;
+     TextView txt,txtstt;
      ImageView img;
      LinearLayout layout;
      public RecycleViewHoder(View itemView) {
          super(itemView);
          txt=itemView.findViewById(R.id.txt_them);
          img=itemView.findViewById(R.id.img_them);
+         txtstt=itemView.findViewById(R.id.txtstt);
          layout=itemView.findViewById(R.id.list_them);
      }
  }
