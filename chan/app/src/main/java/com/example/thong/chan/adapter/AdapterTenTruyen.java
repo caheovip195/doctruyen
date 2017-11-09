@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,10 +44,11 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
     @Override
     public void onBindViewHolder(RecycleViewHolder holder, final int position) {
         //holder.txtten.setText(ds.get(position).getTitle());
-        holder.txtstt.setText(position+"");
+        holder.txtstt.setText((position+1)+"");
         String sub =ds.get(position).getContent().substring(0,30);
         holder.txtten.setText(ds.get(position).getTitle());
         holder.txtmieuta.setText(sub);
+        Log.e("position",(position+1)+"");
         Picasso.with(activity).load(ds.get(position).getThumbnail()).error(R.drawable.anhdoctruyen).into(holder.img);
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override

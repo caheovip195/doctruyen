@@ -101,9 +101,14 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        List<Fragment> fragments = getFragmentManager().getFragments();
-        for(int i=0;i<fragments.size();i++){
+        int stackSize = getFragmentManager().getBackStackEntryCount();
+        if(stackSize>0){
+            FragmentManager manager =getFragmentManager();
+            for(int i=0;i<stackSize;i++){
+                getFragmentManager().popBackStackImmediate();
+            }
         }
+         Log.e("stacksize",stackSize+"");
         if(id== R.id.trangchu){
             changeFragment(new ManHinhChinh());
             toolbar.setTitle("Trang Chủ");
@@ -142,7 +147,7 @@ public class MainActivity extends AppCompatActivity
             intenShare.putExtra(Intent.EXTRA_TEXT, linkApp);
             startActivity(Intent.createChooser(intenShare, "Chia sẻ app với bạn bè của bạn"));
         } else if (id == R.id.thoat) {
-            closeContextMenu();
+            finish();
             }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
