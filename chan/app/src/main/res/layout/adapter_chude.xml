@@ -3,7 +3,6 @@
     android:id="@+id/list_them"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="left|center"
     android:orientation="horizontal"
     android:weightSum="1">
 
@@ -11,7 +10,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="left|center_vertical"
         android:orientation="vertical"
         android:weightSum="2">
 
@@ -24,11 +22,9 @@
 
             <ImageView
                 android:id="@+id/img_them"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
-                android:layout_marginRight="18dp"
-                android:layout_weight="0.02"
-                android:padding="10dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/anhdoctruyen" />
 
             <LinearLayout
@@ -55,13 +51,13 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txt_them"
+                        android:id="@+id/txt_mieuta"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="marquee"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:gravity="left"
+                        android:gravity="center"
                         android:singleLine="true"
                         android:textColor="#005500"
                         android:textSize="17sp" />
@@ -75,14 +71,15 @@
                     android:weightSum="1">
 
                     <TextView
-                        android:id="@+id/txt_mieuta"
+                        android:id="@+id/txt_them"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.8"
+                        android:ellipsize="marquee"
                         android:gravity="center"
                         android:maxLines="3"
                         android:textColor="#000000"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/tvReadmore"
@@ -91,7 +88,6 @@
                         android:layout_gravity="bottom"
                         android:layout_weight="0.2"
                         android:gravity="right"
-                        android:text="Đọc tiếp..."
                         android:textColor="#000000"
                         android:textSize="13sp" />
                 </LinearLayout>
