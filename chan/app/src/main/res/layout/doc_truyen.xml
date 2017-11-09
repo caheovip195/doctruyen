@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
@@ -23,7 +23,7 @@
                 <TextView
                     android:id="@+id/tvTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:ellipsize="marquee"
                     android:focusable="true"
@@ -35,13 +35,14 @@
 
                 <ImageView
                     android:id="@+id/imLike"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/like11"
                     android:padding="5dp" />
 
             </LinearLayout>
-        </LinearLayout>
+        </LinearLayout>-->
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

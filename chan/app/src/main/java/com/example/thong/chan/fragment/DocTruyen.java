@@ -3,6 +3,7 @@ package com.example.thong.chan.fragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentManager.OnBackStackChangedListener;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,6 +25,7 @@ import com.example.thong.chan.adapter.AdapterDocTruyen;
 import com.example.thong.chan.mh_load.Category;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DocTruyen extends Fragment{
     SQLiteDatabase database;
