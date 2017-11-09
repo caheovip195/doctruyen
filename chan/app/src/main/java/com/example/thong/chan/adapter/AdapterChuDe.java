@@ -20,10 +20,6 @@ import com.example.thong.chan.mh_load.SubCate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ThanhCong on 09/11/2017.
- */
-
 public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewHoder> {
     Activity activity;
     List<SubCate>ds=new ArrayList<>();
