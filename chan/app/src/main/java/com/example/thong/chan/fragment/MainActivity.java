@@ -6,8 +6,10 @@ import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -93,12 +95,15 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fragmentManager = getFragmentManager();
+        List<Fragment> fragments = getFragmentManager().getFragments();
+        for(int i=0;i<fragments.size();i++){
+        }
         if(id== R.id.trangchu){
             changeFragment(new ManHinhChinh());
             toolbar.setTitle("Trang Chủ");

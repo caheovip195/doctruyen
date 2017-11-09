@@ -24,7 +24,7 @@
 
             <ImageView
                 android:id="@+id/imgdoctruyen"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginRight="18dp"
                 android:layout_weight="0.02"
