@@ -2,27 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/list_them"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="105dp">
+    android:layout_height="105dp"
+    android:orientation="vertical">
+
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="102dp"
+        android:gravity="center"
         android:orientation="horizontal">
+
         <ImageView
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/anhdoctruyen"
+            android:id="@+id/img_them"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/imganhchude"
-            android:scaleType="centerCrop"/>
+            android:layout_marginTop="2dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/anhdoctruyen" />
 
         <TextView
-            android:id="@+id/txtanhchude"
-            android:gravity="center"
+            android:id="@+id/txt_them"
+            android:background="@drawable/viien"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="match_parent"
+            android:gravity="center" />
     </LinearLayout>
 </LinearLayout>
-

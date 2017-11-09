@@ -8,7 +8,6 @@ public class Category {
     private String cat_id;
     private String cat_name;
     private String url_image;
-
     public Category(String cat_id, String cat_name, String url_image) {
         this.cat_id = cat_id;
         this.cat_name = cat_name;

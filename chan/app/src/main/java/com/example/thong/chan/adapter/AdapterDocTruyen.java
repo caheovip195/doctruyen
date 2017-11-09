@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.thong.chan.R;
 import com.example.thong.chan.fragment.ChuDeTruyen;
 import com.example.thong.chan.mh_load.Category;
+import com.example.thong.chan.mh_load.SubCate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +29,18 @@ import java.util.List;
 
 public class AdapterDocTruyen extends RecyclerView.Adapter<AdapterDocTruyen.RecyclerViewHolder>{
     List<Category>dschude =new ArrayList<>();
+    List<SubCate>dscate=new ArrayList<>();
     Activity context;
+    int so=-1;
     public AdapterDocTruyen(List<Category> dschude, Activity context) {
         this.dschude = dschude;
         this.context = context;
     }
-
+    public AdapterDocTruyen(int so,List<SubCate>dscate,Activity context){
+        this.so=so;
+        this.dscate=dscate;
+        this.context=context;
+    }
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater =LayoutInflater.from(parent.getContext());
@@ -43,7 +50,13 @@ public class AdapterDocTruyen extends RecyclerView.Adapter<AdapterDocTruyen.Recy
 
     @Override
     public void onBindViewHolder(final RecyclerViewHolder holder, final int position) {
-    holder.txt.setText(dschude.get(position).getCat_name());
+        if(so>0){
+            holder.txt.setText(dscate.get(position).getSub_cat_name());
+        }
+        else {
+            holder.txt.setText(dschude.get(position).getCat_name());
+        }
+
     holder.layout.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

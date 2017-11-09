@@ -13,6 +13,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,16 +27,26 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.thong.chan.R;
+import com.example.thong.chan.adapter.AdapterChuDe;
+import com.example.thong.chan.adapter.AdapterDocTruyen;
 import com.example.thong.chan.api_data;
+import com.example.thong.chan.mh_load.SubCate;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 /**
  * Created by ThanhCong on 09/11/2017.
  */
 
 public class ChuDeTruyen extends Fragment{
     SQLiteDatabase database;
+    RecyclerView recyclerView;
+    AdapterChuDe adapterDocTruyen;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -46,8 +58,8 @@ public class ChuDeTruyen extends Fragment{
          int sum_SubCate=sharedPreferences.getInt(key,0);
          if(sum_SubCate==getCountItemDatabase(key)){
              //Load list len
-             addViews(view);
-             addEvents(view);
+             addViews(view,key);
+             addEvents(view,key);
          }
          else {
              loaddata(key);
@@ -85,11 +97,17 @@ public class ChuDeTruyen extends Fragment{
         return view;
     }
 
-    private void addEvents(View view) {
+    private void addEvents(View view, String key) {
 
     }
 
-    private void addViews(View view) {
+    private void addViews(View view, String key) {
+        recyclerView=view.findViewById(R.id.listthemtruyen);
+        adapterDocTruyen=new AdapterChuDe(getActivity(),getdata(key));
+        LinearLayoutManager manager =new LinearLayoutManager(getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapterDocTruyen);
 
     }
     private boolean checkinternet(){
@@ -110,6 +128,18 @@ public class ChuDeTruyen extends Fragment{
         cursor.close();
         return t;
     }
+
+    private ArrayList<SubCate> getdata(String key){
+        ArrayList<SubCate>ds=new ArrayList<>();
+        database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
+        Cursor cursor =database.rawQuery("select sub_cat_id,sub_cat_name,image,cat_id from SubCate where cat_id ="+key,null);
+        while (cursor.moveToNext()){
+            ds.add(new SubCate(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3)));
+        }
+        cursor.close();
+        return ds;
+    }
+
     private void loaddata(final String id){
         final Dialog dialog =new Dialog(getActivity());
         dialog.setContentView(R.layout.loadprogressbar);
@@ -136,7 +166,7 @@ public class ChuDeTruyen extends Fragment{
                     SharedPreferences.Editor editor =sharedPreferences.edit();
                     editor.putInt(id,arr.length());
                     editor.commit();
-                    getFragmentManager().beginTransaction().detach(new ChuDeTruyen()).attach(new ChuDeTruyen()).commit();
+                    //getFragmentManager().beginTransaction().detach(new ChuDeTruyen()).attach(new ChuDeTruyen()).commit();
 
                 } catch (JSONException e) {
                     e.printStackTrace();

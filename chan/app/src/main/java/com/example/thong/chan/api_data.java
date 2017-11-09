@@ -9,5 +9,4 @@ public class api_data {
     public static String Category ="http://doctruyen.nextsol.vn/action/getCategory.php";
     public static String SubCate ="http://tutorial-all.org/action/getSubCate.php?idCate=";
     public static String App ="http://tutorial-all.org/action/getApp.php?idApp="; //lấy ra 1 app
-
 }
