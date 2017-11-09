@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -46,6 +47,8 @@ public class ChuDeTruyen extends Fragment{
     SQLiteDatabase database;
     RecyclerView recyclerView;
     AdapterChuDe adapterDocTruyen;
+    ArrayList<SubCate>ds=new ArrayList<>();
+    boolean flag=true;
 
     @Nullable
     @Override
@@ -53,13 +56,18 @@ public class ChuDeTruyen extends Fragment{
         View view =inflater.inflate(R.layout.fm_chudetruyen,null,false);
         Bundle bundle =getArguments();
         final String key =bundle.getString("cat_id");
+        recyclerView=view.findViewById(R.id.listthemtruyen);
+        adapterDocTruyen=new AdapterChuDe(getActivity(),ds);
+        getdata(key);
+        LinearLayoutManager manager =new LinearLayoutManager(getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapterDocTruyen);
         if(getCountItemDatabase(key)>0){
          SharedPreferences sharedPreferences =getActivity().getSharedPreferences("item_sum",Context.MODE_PRIVATE);
          int sum_SubCate=sharedPreferences.getInt(key,0);
          if(sum_SubCate==getCountItemDatabase(key)){
              //Load list len
-             addViews(view,key);
-             addEvents(view,key);
          }
          else {
              loaddata(key);
@@ -103,12 +111,11 @@ public class ChuDeTruyen extends Fragment{
 
     private void addViews(View view, String key) {
         recyclerView=view.findViewById(R.id.listthemtruyen);
-        adapterDocTruyen=new AdapterChuDe(getActivity(),getdata(key));
+        adapterDocTruyen=new AdapterChuDe(getActivity(),ds);
         LinearLayoutManager manager =new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapterDocTruyen);
-
     }
     private boolean checkinternet(){
         ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -129,15 +136,14 @@ public class ChuDeTruyen extends Fragment{
         return t;
     }
 
-    private ArrayList<SubCate> getdata(String key){
-        ArrayList<SubCate>ds=new ArrayList<>();
+    private void getdata(String key){
         database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
         Cursor cursor =database.rawQuery("select sub_cat_id,sub_cat_name,image,cat_id from SubCate where cat_id ="+key,null);
         while (cursor.moveToNext()){
             ds.add(new SubCate(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3)));
         }
         cursor.close();
-        return ds;
+        adapterDocTruyen.notifyDataSetChanged();
     }
 
     private void loaddata(final String id){
@@ -166,7 +172,9 @@ public class ChuDeTruyen extends Fragment{
                     SharedPreferences.Editor editor =sharedPreferences.edit();
                     editor.putInt(id,arr.length());
                     editor.commit();
-                    //getFragmentManager().beginTransaction().detach(new ChuDeTruyen()).attach(new ChuDeTruyen()).commit();
+                    getdata(id);
+                    flag=false;
+                    //
 
                 } catch (JSONException e) {
                     e.printStackTrace();
