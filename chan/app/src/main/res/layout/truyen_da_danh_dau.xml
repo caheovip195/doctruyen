@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <FrameLayout
         android:id="@+id/FrameLayout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="60dp"
+        android:background="@color/color1" >
 
         <LinearLayout
+            android:id="@+id/llTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1.0" >
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/color1"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.9"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:ems="16"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@string/app_name"
+                    android:textColor="#ffffffff"
+                    android:textSize="25.0sp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5.0dip"
+                android:layout_weight="0.1"
                 android:gravity="center"
                 android:orientation="horizontal" >
 
                 <ImageView
-                    android:id="@+id/imLike"
+                    android:id="@+id/im_timkiem"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:padding="5dp"
-                    />
-
-                <TextView
-                    android:id="@+id/tvTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:ellipsize="marquee"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:gravity="center"
-                    android:singleLine="true"
-                    android:textColor="#fff"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:id="@+id/imShare"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:padding="5dp"
-                    android:src="@drawable/share11" />
-            </LinearLayout>
-
-            <WebView
-                android:id="@+id/wvContent"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.9"
-                android:background="#fff" />
-
-            <LinearLayout
-                android:id="@+id/llAdmod"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                    android:layout_height="wrap_content"
+                    android:contentDescription="Seach"
+                    android:src="@drawable/timkiem" />
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/llSeach"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="invisible" >
+
+            <EditText
+                android:id="@+id/edtSeach"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:hint="Nhập từ cần tìm kiếm"
+                android:inputType="phone"
+                android:paddingLeft="10dp"
+                android:textColor="#FFF"
+                android:textColorHint="#FFF"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/btClose"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:gravity="center"
+                android:text="x"
+                android:textColor="#FFF"
+                android:textSize="30sp" />
+        </LinearLayout>
     </FrameLayout>
-</RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/movielist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9" />
+
+    </LinearLayout>
+
+</LinearLayout>

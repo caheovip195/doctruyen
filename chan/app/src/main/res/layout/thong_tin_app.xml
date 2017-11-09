@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/nenhh"
+    android:background="@drawable/thongtin"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -47,6 +47,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="230dp"
+        android:gravity="center"
         android:background="@drawable/vien"
         android:layout_marginTop="20dp"
         android:orientation="vertical">

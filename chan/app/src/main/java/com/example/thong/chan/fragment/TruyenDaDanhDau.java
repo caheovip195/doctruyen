@@ -9,14 +9,12 @@ import android.view.ViewGroup;
 
 import com.example.thong.chan.R;
 
-public class TruyenDaDanhDau extends Fragment{
-
-    View myView;
+public class TruyenDaDanhDau extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.truyen_da_danh_dau, container, false);
-        return myView;
+        View view = inflater.inflate(R.layout.truyen_da_danh_dau, container, false);
+        return view;
     }
 }
