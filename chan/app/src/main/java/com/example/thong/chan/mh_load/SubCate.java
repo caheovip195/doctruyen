@@ -5,5 +5,5 @@ package com.example.thong.chan.mh_load;
  */
 
 public class SubCate {
-    private
+  //  private
 }

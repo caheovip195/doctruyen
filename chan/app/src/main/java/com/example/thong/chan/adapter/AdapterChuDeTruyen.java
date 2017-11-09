@@ -12,5 +12,5 @@ import java.util.List;
 public class AdapterChuDeTruyen {
 
     private Activity activity;
-    private List<>
+  //  private List<>
 }
