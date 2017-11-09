@@ -1,6 +1,7 @@
 package com.example.thong.chan.adapter;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.thong.chan.R;
 import com.example.thong.chan.fragment.ChuDeTruyen;
+import com.example.thong.chan.fragment.TenTruyen;
 import com.example.thong.chan.mh_load.SubCate;
 
 import java.util.ArrayList;
@@ -43,6 +45,15 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
                  @Override
                  public void onClick(View v) {
                      Toast.makeText(activity, ""+position, Toast.LENGTH_LONG).show();
+                     Bundle bundle =new Bundle();
+                     bundle.putString("sub_cat_id",ds.get(position).getSub_cat_id());
+                     TenTruyen fragment=new TenTruyen();
+                     fragment.setArguments(bundle);
+                     FragmentManager manager =activity.getFragmentManager();
+                     FragmentTransaction transaction =manager.beginTransaction();
+                     transaction.replace(R.id.content_frame,fragment);
+                     transaction.addToBackStack("tentruyen");
+                     transaction.commit();
                  }
              });
     }
