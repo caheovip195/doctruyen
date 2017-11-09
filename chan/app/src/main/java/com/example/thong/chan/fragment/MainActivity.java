@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +22,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.thong.chan.R;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,11 +56,19 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+
+        if(getFragmentManager().getBackStackEntryCount()>0){
+            getFragmentManager().popBackStack();
+            Log.e("tagfm","fmChuDe");
         }
+        else{
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
+        }
+
     }
 
     @Override
@@ -139,6 +150,7 @@ public class MainActivity extends AppCompatActivity
         manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.content_frame, fragment);
+        manager.popBackStack();
         transaction.commit();
 
     }

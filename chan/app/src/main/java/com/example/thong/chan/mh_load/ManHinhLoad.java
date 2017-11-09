@@ -60,7 +60,7 @@ public class ManHinhLoad extends AppCompatActivity {
         }
         else{
            if(checkInternet()){
-                Dialog dialog =new Dialog(this);
+               Dialog dialog =new Dialog(this);
                dialog.setContentView(R.layout.loadprogressbar);
                dialog.setCanceledOnTouchOutside(false);
                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));

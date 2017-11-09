@@ -25,7 +25,8 @@ import com.example.thong.chan.mh_load.Category;
 
 import java.util.ArrayList;
 
-public class DocTruyen extends Fragment{
+public class DocTruyen extends Fragment {
+
     SQLiteDatabase database;
     RecyclerView recyclerView;
     AdapterDocTruyen adapter;
@@ -37,15 +38,29 @@ public class DocTruyen extends Fragment{
             //Danh sach trong
         }
         else {
-            recyclerView=view.findViewById(R.id.listdoctruyen);
-            adapter=new AdapterDocTruyen(loadata(),getActivity());
-            LinearLayoutManager manager =new LinearLayoutManager(getActivity());
-            manager.setOrientation(LinearLayoutManager.VERTICAL);
-            recyclerView.setLayoutManager(manager);
-            recyclerView.setAdapter(adapter);
+            addViews(view);
+            addEvents(view);
         }
         return view;
     }
+    private void addEvents(View view) {
+      adapter.setOnItemClickedListener(new AdapterDocTruyen.OnItemClickedListener() {
+          @Override
+          public void onItemClick(String dschude) {
+             // Toast.makeText(getActivity(), ""+dschude, Toast.LENGTH_LONG).show();
+          }
+      });
+    }
+
+    private void addViews(View view) {
+        recyclerView=view.findViewById(R.id.listdoctruyen);
+        adapter=new AdapterDocTruyen(loadata(),getActivity());
+        LinearLayoutManager manager =new LinearLayoutManager(getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
+    }
+
     private ArrayList<Category>loadata(){
         ArrayList<Category>ds=new ArrayList<>();
         database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
