@@ -46,7 +46,7 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
              holder.layout.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                     Toast.makeText(activity, ""+position, Toast.LENGTH_LONG).show();
+                   //  Toast.makeText(activity, ""+position, Toast.LENGTH_LONG).show();
                      Bundle bundle =new Bundle();
                      bundle.putString("sub_cat_id",ds.get(position).getSub_cat_id());
                      TenTruyen fragment=new TenTruyen();
