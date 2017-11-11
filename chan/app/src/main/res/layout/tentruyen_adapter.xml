@@ -41,28 +41,16 @@
             android:layout_toRightOf="@+id/lntentruyen"
             android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/txttenmieuta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/txtten"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/txtstt"
-            android:layout_toRightOf="@+id/txtstt"
-            android:textSize="15sp" />
-        
-        <TextView
-            android:id="@+id/txtstt"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/lntentruyen"
-            android:layout_toRightOf="@+id/lntentruyen"
-            android:background="@drawable/bgstt"
-            android:text="10"
-            android:textColor="#ff5a5a" />
+            <TextView
+                android:id="@+id/txtstt"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/lntentruyen"
+                android:layout_toRightOf="@+id/lntentruyen"
+                android:background="@drawable/khung_so"
+                android:textColor="#ff5a5a" />
 
         <TextView
             android:id="@+id/txttendocthem"
