@@ -47,7 +47,7 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
         holder.txtstt.setText((position+1)+"");
         String sub =ds.get(position).getContent().substring(0,30);
         holder.txtten.setText(ds.get(position).getTitle());
-        holder.txtmieuta.setText(sub);
+       // holder.txtmieuta.setText(sub);
         Log.e("position",(position+1)+"");
         Picasso.with(activity).load(ds.get(position).getThumbnail()).error(R.drawable.sach).into(holder.img);
         holder.layout.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +81,7 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
             img=itemView.findViewById(R.id.imgten);
             txtten=itemView.findViewById(R.id.txtten);
             txtstt=itemView.findViewById(R.id.txtstt);
-            txtmieuta=itemView.findViewById(R.id.txtstt);
+            //txtmieuta=itemView.findViewById(R.id.txtstt);
         }
     }
 }

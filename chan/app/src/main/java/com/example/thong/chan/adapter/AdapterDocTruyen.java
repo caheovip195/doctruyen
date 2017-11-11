@@ -52,6 +52,7 @@ public class AdapterDocTruyen extends RecyclerView.Adapter<AdapterDocTruyen.Recy
         else {
             holder.txt.setText(dschude.get(position).getCat_name());
         }
+        holder.txtdt.setText((position+1)+"");
 
     holder.layout.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -76,12 +77,13 @@ public class AdapterDocTruyen extends RecyclerView.Adapter<AdapterDocTruyen.Recy
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder{
         ImageView img;
-        TextView txt;
+        TextView txt,txtdt;
         LinearLayout layout;
         public RecyclerViewHolder(View itemView) {
             super(itemView);
             img=itemView.findViewById(R.id.imgdoctruyen);
             txt=itemView.findViewById(R.id.txtdoctruyen);
+            txtdt=itemView.findViewById(R.id.txtsttdetai);
             layout=itemView.findViewById(R.id.listchude);
         }
     }

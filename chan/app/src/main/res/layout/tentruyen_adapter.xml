@@ -52,7 +52,7 @@
             android:layout_toEndOf="@+id/txtstt"
             android:layout_toRightOf="@+id/txtstt"
             android:textSize="15sp" />
-
+        
         <TextView
             android:id="@+id/txtstt"
             android:layout_width="30dp"
