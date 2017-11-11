@@ -1,74 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/list_them"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="horizontal"
     android:weightSum="1">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical"
-        android:weightSum="2">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            android:id="@+id/linearLayout2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/my_custom_background">
 
             <ImageView
                 android:id="@+id/img_them"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginRight="18dp"
-                android:layout_weight="0.02"
-                android:padding="10dp"
-                android:src="@drawable/as" />
-
-            <LinearLayout
-                android:layout_width="212dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <LinearLayout
-                    android:gravity="center_vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.7"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/txtstt"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                        android:text="10"
-                        android:textColor="#ff9797"
-                        android:textSize="17sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txt_them"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="marquee"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:gravity="left"
-                        android:singleLine="true"
-                        android:textColor="#005500"
-                        android:textSize="17sp" />
-                </LinearLayout>
-
-            </LinearLayout>
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="23dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sach" />
         </LinearLayout>
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_mieuta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txt_them"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/txtstt"
+            android:layout_toLeftOf="@+id/like"
+            android:layout_toRightOf="@+id/txtstt"
+            android:layout_toStartOf="@+id/like"
+            android:gravity="center"
+            android:text="Tác Giả :..."
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txt_them"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/linearLayout2"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/txtstt"
+            android:layout_toEndOf="@+id/linearLayout2"
+            android:layout_toRightOf="@+id/linearLayout2"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtstt"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/linearLayout2"
+            android:layout_toRightOf="@+id/linearLayout2"
+            android:background="@drawable/bgstt"
+            android:gravity="center"
+            android:text="10"
+            android:textColor="#ff5a5a" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="100dp"
+            android:background="#c2ff9f" />
+
+        <ImageView
+            android:id="@+id/like"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_above="@+id/txt_them"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/like2" />
+    </RelativeLayout>
 </LinearLayout>

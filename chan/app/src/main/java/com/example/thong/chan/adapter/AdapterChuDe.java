@@ -1,7 +1,6 @@
 package com.example.thong.chan.adapter;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thong.chan.R;
-import com.example.thong.chan.fragment.ChuDeTruyen;
 import com.example.thong.chan.fragment.TenTruyen;
 import com.example.thong.chan.mh_load.SubCate;
 import com.squareup.picasso.Picasso;
@@ -58,7 +56,7 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
                      transaction.commit();
                  }
              });
-        Picasso.with(activity).load(ds.get(position).getImage()).error(R.drawable.as).into(holder.img);
+        Picasso.with(activity).load(ds.get(position).getImage()).error(R.drawable.sach).into(holder.img);
     }
 
     @Override
