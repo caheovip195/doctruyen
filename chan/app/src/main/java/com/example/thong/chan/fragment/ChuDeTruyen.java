@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -44,6 +45,8 @@ import java.util.ArrayList;
  */
 
 public class ChuDeTruyen extends Fragment{
+    RequestQueue requestQueue;
+    JsonObjectRequest request;
     SQLiteDatabase database;
     RecyclerView recyclerView;
     AdapterChuDe adapterDocTruyen;
@@ -149,8 +152,9 @@ public class ChuDeTruyen extends Fragment{
     private void loaddata(final String id){
         final Dialog dialog =new Dialog(getActivity());
         dialog.setContentView(R.layout.loadprogressbar);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
-        JsonObjectRequest request =new JsonObjectRequest(api_data.SubCate + id, null, new Response.Listener<JSONObject>() {
+         request =new JsonObjectRequest(api_data.SubCate + id, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 database =getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
@@ -208,7 +212,18 @@ public class ChuDeTruyen extends Fragment{
                 dialog.show();
             }
         });
-        RequestQueue requestQueue =Volley.newRequestQueue(getActivity());
+        requestQueue =Volley.newRequestQueue(getActivity());
         requestQueue.add(request);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(requestQueue==null){
+
+        }
+        else {
+            requestQueue.stop();
+        }
     }
 }

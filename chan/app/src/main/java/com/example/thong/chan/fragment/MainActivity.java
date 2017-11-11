@@ -116,7 +116,11 @@ public class MainActivity extends AppCompatActivity
         else
         if (id == R.id.doctruyen) {
             // Handle the camera action
-            changeFragment(new DocTruyen());
+            FragmentManager manager =getFragmentManager();
+            FragmentTransaction transaction =manager.beginTransaction();
+            transaction.addToBackStack("m1");
+            transaction.replace(R.id.content_frame,new DocTruyen());
+            transaction.commit();
             toolbar.setTitle("Đọc Truyện");
         } else if (id == R.id.tddau) {
             changeFragment(new TruyenDaDanhDau());
