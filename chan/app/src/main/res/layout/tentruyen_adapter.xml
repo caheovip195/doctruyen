@@ -60,8 +60,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/lntentruyen"
                 android:layout_toRightOf="@+id/lntentruyen"
-                android:background="@drawable/bgstt"
-                android:text="10"
+                android:background="@drawable/khungso"
                 android:textColor="#ff5a5a" />
 
             <TextView
