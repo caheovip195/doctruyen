@@ -5,79 +5,68 @@
     android:layout_height="wrap_content"
     android:weightSum="1">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="1">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
-            <LinearLayout
-                android:id="@+id/lntentruyen"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/my_custom_background">
+        <LinearLayout
+            android:id="@+id/lntentruyen"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/my_custom_background">
 
-                <ImageView
-                    android:id="@+id/imgten"
-                    android:layout_width="54dp"
-                    android:layout_height="54dp"
-                    android:layout_marginLeft="23dp"
-                    android:layout_marginTop="23dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/sach" />
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/imgten"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="23dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sach" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtten"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/txttendocthem"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/txtstt"
-                android:layout_toEndOf="@+id/lntentruyen"
-                android:layout_toRightOf="@+id/lntentruyen"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/txttenmieuta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/txtten"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/txtstt"
-                android:layout_toRightOf="@+id/txtstt"
-                android:textSize="15sp" />
+        <TextView
+            android:id="@+id/txtten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txttendocthem"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/txtstt"
+            android:layout_toEndOf="@+id/lntentruyen"
+            android:layout_toRightOf="@+id/lntentruyen"
+            android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/txtstt"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:gravity="center"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/lntentruyen"
                 android:layout_toRightOf="@+id/lntentruyen"
-                android:background="@drawable/bgstt"
+                android:background="@drawable/khung_so"
                 android:textColor="#ff5a5a" />
 
-            <TextView
-                android:id="@+id/txttendocthem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/lntentruyen"
-                android:layout_alignEnd="@+id/txtten"
-                android:layout_alignRight="@+id/txtten"
-                android:gravity="right"
-                android:text="Đọc tiếp..."
-                android:textColor="#000000" />
+        <TextView
+            android:id="@+id/txttendocthem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/lntentruyen"
+            android:layout_alignEnd="@+id/txtten"
+            android:layout_alignRight="@+id/txtten"
+            android:gravity="right"
+            android:text="Đọc tiếp..."
+            android:textColor="#000000" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="100dp"
-                android:background="#c2ff9f" />
-        </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="100dp"
+            android:background="#c2ff9f" />
+    </RelativeLayout>
 </LinearLayout>
