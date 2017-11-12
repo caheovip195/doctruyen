@@ -55,7 +55,7 @@
                 android:layout_toEndOf="@+id/lntentruyen"
                 android:layout_toRightOf="@+id/lntentruyen"
                 android:background="@drawable/khung_so"
-                android:textColor="#ff5a5a" />
+                android:textColor="#ff0000" />
 
         <TextView
             android:id="@+id/txttendocthem"

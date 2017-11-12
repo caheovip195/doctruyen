@@ -55,7 +55,7 @@
             android:layout_toRightOf="@+id/linearLayout2"
             android:background="@drawable/khung_so"
             android:gravity="center"
-            android:textColor="#ff5a5a" />
+            android:textColor="#ff0202" />
 
         <TextView
             android:layout_width="match_parent"

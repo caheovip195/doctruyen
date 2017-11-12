@@ -40,10 +40,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by ThanhCong on 09/11/2017.
- */
-
 public class ChuDeTruyen extends Fragment{
     RequestQueue requestQueue;
     JsonObjectRequest request;

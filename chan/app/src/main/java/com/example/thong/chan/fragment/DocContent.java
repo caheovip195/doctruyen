@@ -13,10 +13,6 @@ import android.webkit.WebViewClient;
 
 import com.example.thong.chan.R;
 
-/**
- * Created by ThanhCong on 09/11/2017.
- */
-
 public class DocContent extends Fragment {
 
     WebView webview;

@@ -1,9 +1,5 @@
 package com.example.thong.chan.mh_load;
 
-/**
- * Created by ThanhCong on 09/11/2017.
- */
-
 public class App {
     private String id,title,content,thumbnail,sub_cat_id,cat_id;
     public App(String id, String title, String content, String thumbnail, String sub_cat_id, String cat_id) {

@@ -1,5 +1,5 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:drawable="@drawable/khung_anh" />
+    <item android:drawable="@drawable/khung_anh1" />
     <item>
         <shape android:shape="rectangle" android:padding="10dp">
             <corners
