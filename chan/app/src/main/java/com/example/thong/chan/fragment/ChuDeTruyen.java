@@ -33,6 +33,8 @@ import com.example.thong.chan.adapter.AdapterChuDe;
 import com.example.thong.chan.adapter.AdapterDocTruyen;
 import com.example.thong.chan.api_data;
 import com.example.thong.chan.mh_load.SubCate;
+import com.example.thong.chan.mh_load.SubCateLike;
+import com.example.thong.chan.mh_load.SubCheck;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,7 +52,7 @@ public class ChuDeTruyen extends Fragment{
     SQLiteDatabase database;
     RecyclerView recyclerView;
     AdapterChuDe adapterDocTruyen;
-    ArrayList<SubCate>ds=new ArrayList<>();
+    ArrayList<SubCateLike>ds=new ArrayList<>();
     boolean flag=true;
 
     @Nullable
@@ -59,8 +61,9 @@ public class ChuDeTruyen extends Fragment{
         View view =inflater.inflate(R.layout.fm_chudetruyen,null,false);
         Bundle bundle =getArguments();
         final String key =bundle.getString("cat_id");
+        String catname=bundle.getString("cat_name");
         recyclerView=view.findViewById(R.id.listthemtruyen);
-        adapterDocTruyen=new AdapterChuDe(getActivity(),ds);
+        adapterDocTruyen=new AdapterChuDe(getActivity(),ds,catname);
         getdata(key);
         LinearLayoutManager manager =new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -107,19 +110,7 @@ public class ChuDeTruyen extends Fragment{
         }
         return view;
     }
-
-    private void addEvents(View view, String key) {
-
-    }
-
-    private void addViews(View view, String key) {
-        recyclerView=view.findViewById(R.id.listthemtruyen);
-        adapterDocTruyen=new AdapterChuDe(getActivity(),ds);
-        LinearLayoutManager manager =new LinearLayoutManager(getActivity());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapterDocTruyen);
-    }
+    
     private boolean checkinternet(){
         ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         if(manager.getActiveNetworkInfo()!=null){
@@ -141,9 +132,36 @@ public class ChuDeTruyen extends Fragment{
 
     private void getdata(String key){
         database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
+        ArrayList<SubCheck>dsCheck=new ArrayList<>();
         Cursor cursor =database.rawQuery("select sub_cat_id,sub_cat_name,image,cat_id from SubCate where cat_id ="+key,null);
+        Cursor cursor1=database.rawQuery("select sub_cat_id,sub_cat_name from ThichSubCate",null);
+        while (cursor1.moveToNext()){
+            dsCheck.add(new SubCheck(cursor1.getString(0),cursor1.getString(1)));
+        }
+        cursor1.close();
         while (cursor.moveToNext()){
-            ds.add(new SubCate(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3)));
+            int t=dsCheck.size();
+            boolean fl=false;
+            while (t>0){
+                if(dsCheck.get(t-1).getCat_id().equalsIgnoreCase(cursor.getString(0))
+                            && dsCheck.get(t-1).getCat_id().equalsIgnoreCase(cursor.getString(3))){
+                       fl=true;
+                       break;
+                 }
+            }
+            if(fl==true){
+                ds.add(new SubCateLike(cursor.getString(0)
+                        ,cursor.getString(1)
+                        ,cursor.getString(2)
+                        ,cursor.getString(3),1+""));
+            }
+            else {
+                ds.add(new SubCateLike(cursor.getString(0)
+                        ,cursor.getString(1)
+                        ,cursor.getString(2)
+                        ,cursor.getString(3),0+""));
+            }
+
         }
         cursor.close();
         adapterDocTruyen.notifyDataSetChanged();

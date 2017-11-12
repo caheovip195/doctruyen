@@ -59,6 +59,7 @@ public class AdapterDocTruyen extends RecyclerView.Adapter<AdapterDocTruyen.Recy
         public void onClick(View v) {
             Bundle agruments =new Bundle();
             agruments.putString("cat_id",dschude.get(position).getCat_id());
+            agruments.putString("cat_name",dschude.get(position).getCat_name());
             ChuDeTruyen chuDeTruyen =new ChuDeTruyen();
             chuDeTruyen.setArguments(agruments);
             FragmentManager manager =context.getFragmentManager();

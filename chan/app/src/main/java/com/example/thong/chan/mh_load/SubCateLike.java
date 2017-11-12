@@ -5,7 +5,8 @@ package com.example.thong.chan.mh_load;
  */
 
 public class SubCateLike extends SubCate {
-    public SubCateLike(String sub_cat_id, String sub_cat_name, String image, String cat_id) {
+    protected String status;
+    public SubCateLike(String sub_cat_id, String sub_cat_name, String image, String cat_id,String status) {
        // super(sub_cat_id, sub_cat_name, image, cat_id);
         this.status = status;
         this.sub_cat_id=sub_cat_id;
@@ -30,5 +31,5 @@ public class SubCateLike extends SubCate {
         this.status = status;
     }
 
-    protected String status;
+
 }
