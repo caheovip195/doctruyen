@@ -41,13 +41,15 @@
             android:layout_toRightOf="@+id/txtstt"
             android:layout_toStartOf="@+id/like"
             android:gravity="center"
+            android:text="Đọc Truyện"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txt_them"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/my_custom_background_tieu_de"
             android:layout_above="@+id/tac_gia"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
