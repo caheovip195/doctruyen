@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listchude_like"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/my_custom_background"
+            >
+
+            <ImageView
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="23dp"
+                android:id="@+id/imgdoctruyen_like"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sach" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtdoctruyen_like"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/linearLayout2"
+            android:layout_alignLeft="@+id/txtsttdetai_like"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/txtsttdetai_like"
+            android:layout_below="@+id/txtsttdetai_like"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtsttdetai_like"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="102dp"
+            android:background="@drawable/khung_so"
+            android:gravity="center"
+            android:textColor="#ff5a5a" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="100dp"
+            android:background="#c2ff9f" />
+    </RelativeLayout>
+</LinearLayout>

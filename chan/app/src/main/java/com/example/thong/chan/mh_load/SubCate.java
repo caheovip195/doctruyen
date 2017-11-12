@@ -5,7 +5,7 @@ package com.example.thong.chan.mh_load;
  */
 
 public class SubCate {
-    private String sub_cat_id,sub_cat_name,image,cat_id;
+    protected String sub_cat_id,sub_cat_name,image,cat_id;
 
     public SubCate(String sub_cat_id, String sub_cat_name, String image, String cat_id) {
         this.sub_cat_id = sub_cat_id;
