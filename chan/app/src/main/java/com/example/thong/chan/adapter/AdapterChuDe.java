@@ -3,11 +3,16 @@ package com.example.thong.chan.adapter;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -40,14 +45,35 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
     }
 
     @Override
-    public void onBindViewHolder(RecycleViewHoder holder, final int position) {
+    public void onBindViewHolder(final RecycleViewHoder holder, final int position) {
              holder.txt.setText(ds.get(position).getSub_cat_name());
              holder.txtstt.setText((position+1)+"");
+             if(Integer.parseInt(ds.get(position).getStatus())==1){
+                 holder.imglike.setImageResource(R.drawable.like11);
+             }
+             else {
+                 holder.imglike.setImageResource(R.drawable.like2);
+             }
+        final int[] t = {0};
              holder.txtmieuta.setText(catename);
-             holder.layout.setOnClickListener(new View.OnClickListener() {
+             holder.imglike.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                   //  Toast.makeText(activity, ""+position, Toast.LENGTH_LONG).show();
+                     if(t[0] ==1){
+                         //Xóa khỏi danh sách
+                         holder.imglike.setImageResource(R.drawable.like2);
+                         t[0] =0;
+                     }
+                     else{
+                         t[0] =1;
+                         holder.imglike.setImageResource(R.drawable.like11);
+                     }
+                 }
+             });
+             Picasso.with(activity).load(ds.get(position).getImage()).error(R.drawable.sach).into(holder.img);
+             holder.itemView.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
                      Bundle bundle =new Bundle();
                      bundle.putString("sub_cat_id",ds.get(position).getSub_cat_id());
                      TenTruyen fragment=new TenTruyen();
@@ -59,7 +85,6 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
                      transaction.commit();
                  }
              });
-        Picasso.with(activity).load(ds.get(position).getImage()).error(R.drawable.sach).into(holder.img);
     }
 
     @Override
@@ -67,9 +92,10 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
         return ds.size();
     }
 
+
     public class RecycleViewHoder extends RecyclerView.ViewHolder{
      TextView txt,txtstt,txtmieuta;
-     ImageView img;
+     ImageView img,imglike;
      LinearLayout layout;
      public RecycleViewHoder(View itemView) {
          super(itemView);
@@ -78,6 +104,7 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
          txtstt=itemView.findViewById(R.id.txtstt);
          layout=itemView.findViewById(R.id.list_them);
          txtmieuta=itemView.findViewById(R.id.txt_mieuta_chude);
+         imglike=itemView.findViewById(R.id.like);
      }
  }
 }

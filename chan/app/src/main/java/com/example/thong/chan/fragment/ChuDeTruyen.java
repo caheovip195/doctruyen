@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -29,6 +31,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.thong.chan.R;
+import com.example.thong.chan.RecyclerItemClickListener;
 import com.example.thong.chan.adapter.AdapterChuDe;
 import com.example.thong.chan.adapter.AdapterDocTruyen;
 import com.example.thong.chan.api_data;
@@ -69,6 +72,26 @@ public class ChuDeTruyen extends Fragment{
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapterDocTruyen);
+        /*recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Bundle bundle =new Bundle();
+                bundle.putString("sub_cat_id",ds.get(position).getSub_cat_id());
+                TenTruyen fragment=new TenTruyen();
+                fragment.setArguments(bundle);
+                FragmentManager manager =getActivity().getFragmentManager();
+                FragmentTransaction transaction =manager.beginTransaction();
+                transaction.replace(R.id.content_frame,fragment);
+                transaction.addToBackStack("tentruyen");
+                transaction.commit();
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+        }));
+        */
         if(getCountItemDatabase(key)>0){
          SharedPreferences sharedPreferences =getActivity().getSharedPreferences("item_sum",Context.MODE_PRIVATE);
          int sum_SubCate=sharedPreferences.getInt(key,0);
@@ -110,7 +133,7 @@ public class ChuDeTruyen extends Fragment{
         }
         return view;
     }
-    
+
     private boolean checkinternet(){
         ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         if(manager.getActiveNetworkInfo()!=null){
