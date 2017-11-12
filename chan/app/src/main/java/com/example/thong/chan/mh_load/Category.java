@@ -1,9 +1,5 @@
 package com.example.thong.chan.mh_load;
 
-/**
- * Created by ThanhCong on 08/11/2017.
- */
-
 public class Category {
     private String cat_id;
     private String cat_name;

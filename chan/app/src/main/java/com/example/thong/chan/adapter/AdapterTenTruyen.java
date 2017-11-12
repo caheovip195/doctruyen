@@ -21,10 +21,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ThanhCong on 09/11/2017.
- */
-
 public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.RecycleViewHolder>{
     Activity activity;
     List<App>ds =new ArrayList<>();

@@ -1,9 +1,5 @@
 package com.example.thong.chan.mh_load;
 
-/**
- * Created by ThanhCong on 09/11/2017.
- */
-
 public class SubCate {
     protected String sub_cat_id,sub_cat_name,image,cat_id;
 

@@ -37,10 +37,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by ThanhCong on 09/11/2017.
- */
-
 public class TenTruyen extends Fragment {
 
     SQLiteDatabase database;
