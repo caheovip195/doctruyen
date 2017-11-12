@@ -33,6 +33,7 @@
             android:id="@+id/txtdoctruyen"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/my_custom_background_tieu_de"
             android:layout_alignBottom="@+id/linearLayout2"
             android:layout_alignLeft="@+id/txtsttdetai"
             android:layout_alignParentEnd="true"
