@@ -40,8 +40,9 @@ public class ManHinhChinh extends Fragment {
 
             @Override
             public void onClick(View view) {
-                FragmentManager manager =getActivity().getFragmentManager();
-                FragmentTransaction transaction=manager.beginTransaction();
+                FragmentManager manager =getFragmentManager();
+                FragmentTransaction transaction =manager.beginTransaction();
+                transaction.addToBackStack("m2");
                 transaction.replace(R.id.content_frame,new TruyenDaDanhDau());
                 transaction.commit();
             }

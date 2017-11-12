@@ -123,7 +123,11 @@ public class MainActivity extends AppCompatActivity
             transaction.commit();
             toolbar.setTitle("Đọc Truyện");
         } else if (id == R.id.tddau) {
-            changeFragment(new TruyenDaDanhDau());
+            FragmentManager manager =getFragmentManager();
+            FragmentTransaction transaction =manager.beginTransaction();
+            transaction.addToBackStack("m2");
+            transaction.replace(R.id.content_frame,new TruyenDaDanhDau());
+            transaction.commit();
             toolbar.setTitle("Truyện Đã Đánh Dấu");
         } else if (id == R.id.danhgia) {
             DanhGia.app_launched(this);
