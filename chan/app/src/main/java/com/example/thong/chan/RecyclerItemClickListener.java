@@ -1,9 +1,5 @@
 package com.example.thong.chan;
 
-/**
- * Created by ThanhCong on 12/11/2017.
- */
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
