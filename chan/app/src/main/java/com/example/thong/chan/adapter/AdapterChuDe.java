@@ -54,19 +54,24 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
              else {
                  holder.imglike.setImageResource(R.drawable.like2);
              }
-        final int[] t = {0};
-             holder.txtmieuta.setText(catename);
+             final SQLiteDatabase database =activity.openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
              holder.imglike.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                     if(t[0] ==1){
-                         //Xóa khỏi danh sách
+                     if(Integer.parseInt(ds.get(position).getStatus())==1){
                          holder.imglike.setImageResource(R.drawable.like2);
-                         t[0] =0;
+                         database.delete("ThichSubCate","sub_cat_id=? and cat_id=?",
+                                 new String[]{ds.get(position).getSub_cat_id(),ds.get(position).getCat_id()});
                      }
-                     else{
-                         t[0] =1;
+                     else {
                          holder.imglike.setImageResource(R.drawable.like11);
+                         ContentValues contentValues =new ContentValues();
+                         contentValues.put("sub_cat_id",ds.get(position).getSub_cat_id());
+                         contentValues.put("sub_cat_name",ds.get(position).getSub_cat_name());
+                         contentValues.put("image",ds.get(position).getImage());
+                         contentValues.put("cat_id",ds.get(position).getCat_id());
+                         contentValues.put("status",1+"");
+                         database.insert("ThichSubCate",null,contentValues);
                      }
                  }
              });
@@ -85,6 +90,7 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
                      transaction.commit();
                  }
              });
+             Log.e("status",ds.get(position).getStatus()+"");
     }
 
     @Override
