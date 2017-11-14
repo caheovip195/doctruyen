@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.thong.chan.R;
 import com.example.thong.chan.adapter.AdapterDocTruyen;
 import com.example.thong.chan.mh_load.Category;
+import com.example.thong.chan.mh_load.ListCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +37,8 @@ public class DocTruyen extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.doc_truyen, container, false);
-        if(loadata().isEmpty()){
-            //Danh sach trong
-        }
-        else {
             addViews(view);
             addEvents(view);
-        }
         return view;
     }
     private void addEvents(View view) {
@@ -56,21 +52,10 @@ public class DocTruyen extends Fragment {
 
     private void addViews(View view) {
         recyclerView=view.findViewById(R.id.listdoctruyen);
-        adapter=new AdapterDocTruyen(loadata(),getActivity());
+        adapter=new AdapterDocTruyen(ListCategory.listcategory,getActivity());
         LinearLayoutManager manager =new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
-    }
-
-    private ArrayList<Category>loadata(){
-        ArrayList<Category>ds=new ArrayList<>();
-        database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
-        Cursor cursor =database.rawQuery("select cat_id,cat_name,url_image from Category",null);
-        while (cursor.moveToNext()){
-            ds.add(new Category(cursor.getString(0),cursor.getString(1),cursor.getString(2)));
-        }
-        cursor.close();
-       return ds;
     }
 }
