@@ -28,6 +28,7 @@ import com.example.thong.chan.Connectivity;
 import com.example.thong.chan.R;
 import com.example.thong.chan.adapter.AdapterChuDe;
 import com.example.thong.chan.api_data;
+import com.example.thong.chan.mh_load.SubCate;
 import com.example.thong.chan.mh_load.SubCateLike;
 import com.example.thong.chan.mh_load.SubCheck;
 
@@ -110,7 +111,6 @@ public class ChuDeTruyen extends Fragment{
                     flag=true;
                 }
             }
-            Log.e("t",dsCheck.size()+"");
             if(flag==true){
                 ds.add(new SubCateLike(cursor.getString(0)
                         ,cursor.getString(1)
@@ -157,7 +157,6 @@ public class ChuDeTruyen extends Fragment{
                         contentValues.put("sub_cat_name", obj.getString("sub_cat_name"));
                         contentValues.put("image", obj.getString("image"));
                         contentValues.put("cat_id", obj.getString("cat_id"));
-                        Log.e("cat_id", obj.getString("sub_cat_id"));
                         database.insert("SubCate", null, contentValues);
                         for (SubCheck check : isother) {
                             if (Integer.parseInt(check.getCat_id()) == Integer.parseInt(obj.getString("sub_cat_id"))
@@ -172,6 +171,7 @@ public class ChuDeTruyen extends Fragment{
                                     obj.getString("image"),
                                     obj.getString("cat_id"),
                                     1 + ""));
+                            Log.e("giongnhau",obj.getString("sub_cat_id"));
 
                         } else {
                             ds.add(new SubCateLike(obj.getString("sub_cat_id"),
@@ -180,6 +180,9 @@ public class ChuDeTruyen extends Fragment{
                                     obj.getString("cat_id"),
                                     0 + ""));
                         }
+                    }
+                    for (SubCateLike sta :ds){
+
                     }
                     dialog.cancel();
                     adapterDocTruyen.notifyDataSetChanged();
