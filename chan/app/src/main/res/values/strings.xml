@@ -3,6 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <color name="color1">#61BD6D</color>
+    <color name="color2">#ffffff</color>
 
     <string name="action_settings">Settings</string>
 </resources>

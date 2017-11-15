@@ -17,17 +17,16 @@
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:background="@drawable/my_custom_background">
+            android:layout_height="90dp">
 
-            <ImageView
+            <com.meg7.widget.CustomShapeImageView
                 android:id="@+id/img_them"
-                android:layout_width="74dp"
-                android:layout_height="74dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                app:shape="circle"
                 android:scaleType="centerCrop"
-                android:src="@drawable/sach" />
+                android:src="@drawable/sach"
+                android:background="@drawable/my_custom_background"/>
         </LinearLayout>
 
         <TextView
@@ -51,7 +50,6 @@
             android:ellipsize="marquee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/my_custom_background_tieu_de"
             android:layout_above="@+id/tac_gia"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -69,7 +67,6 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/linearLayout2"
             android:layout_toRightOf="@+id/linearLayout2"
-            android:background="@drawable/khung_so"
             android:gravity="center"
             android:text="10"
             android:textColor="#ff0000" />

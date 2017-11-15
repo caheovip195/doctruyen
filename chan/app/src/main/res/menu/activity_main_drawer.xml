@@ -17,6 +17,10 @@
             android:icon="@android:drawable/ic_input_get"
             android:title="Truyện Đã Đánh Dấu" />
         <item
+            android:id="@+id/tacgia"
+            android:icon="@drawable/tacgia"
+            android:title="Tác Giả" />
+        <item
             android:id="@+id/danhgia"
             android:icon="@android:drawable/stat_notify_chat"
             android:title="Đánh Giá" />
