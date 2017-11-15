@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 public class TruyenDaDanhDau extends Fragment {
     ArrayList<SubCateLike>ds=new ArrayList<>();
     RecyclerView recyclerView;
-    AdapterLike adapterLike;
+    AdapterLike adapterLike=new AdapterLike(getActivity(),ds);
 
     @Nullable
     @Override
@@ -44,7 +45,6 @@ public class TruyenDaDanhDau extends Fragment {
             layout.addView(button);
         }
         else {
-            adapterLike=new AdapterLike(getActivity(),ds);
             recyclerView.setAdapter(adapterLike);
         }
 
@@ -57,5 +57,7 @@ public class TruyenDaDanhDau extends Fragment {
              ds.add(new SubCateLike(cursor.getString(0),cursor.getString(1),cursor.getString(2)));
         }
         cursor.close();
+        adapterLike.notifyDataSetChanged();
+        Log.e("sum_like",ds.size()+"");
     }
 }
