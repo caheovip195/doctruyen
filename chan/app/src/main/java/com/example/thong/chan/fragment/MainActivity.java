@@ -129,6 +129,12 @@ public class MainActivity extends AppCompatActivity
             transaction.replace(R.id.content_frame,new TruyenDaDanhDau());
             transaction.commit();
             toolbar.setTitle("Truyện Đã Đánh Dấu");
+        } else if (id == R.id.tacgia) {
+            FragmentManager manager =getFragmentManager();
+            FragmentTransaction transaction =manager.beginTransaction();
+            transaction.addToBackStack("m2");
+            transaction.replace(R.id.content_frame,new TacGia());
+            transaction.commit();
         } else if (id == R.id.danhgia) {
             DanhGia.app_launched(this);
         } else if (id == R.id.tapp) {
@@ -146,7 +152,11 @@ public class MainActivity extends AppCompatActivity
                         Uri.parse("http://play.google.com/store/apps/details?id=" + getApplication().getPackageName())));
             }
         } else if (id == R.id.ttapp) {
-            changeFragment(new ThongTinApp());
+            FragmentManager manager =getFragmentManager();
+            FragmentTransaction transaction =manager.beginTransaction();
+            transaction.addToBackStack("m2");
+            transaction.replace(R.id.content_frame,new ThongTinApp());
+            transaction.commit();
             toolbar.setTitle("Thông Tin App");
         } else if (id == R.id.share) {
             String linkApp = "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName();

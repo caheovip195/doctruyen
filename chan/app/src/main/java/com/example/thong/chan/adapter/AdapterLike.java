@@ -19,10 +19,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-/**
- * Created by ThanhCong on 12/11/2017.
- */
-
 public class AdapterLike extends RecyclerView.Adapter<AdapterLike.RecycleViewHolder>{
     Activity activity;
     ArrayList<SubCateLike>ds=new ArrayList<>();

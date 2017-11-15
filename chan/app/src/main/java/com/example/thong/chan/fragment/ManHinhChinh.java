@@ -31,6 +31,7 @@ public class ManHinhChinh extends Fragment {
                 FragmentManager manager =getActivity().getFragmentManager();
                 FragmentTransaction transaction=manager.beginTransaction();
                 transaction.replace(R.id.content_frame,new ThongTinApp());
+                transaction.addToBackStack("m2");
                 transaction.commit();
             }
         });
