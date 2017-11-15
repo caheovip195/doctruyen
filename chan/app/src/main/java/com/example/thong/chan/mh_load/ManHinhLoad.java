@@ -71,7 +71,10 @@ public class ManHinhLoad extends AppCompatActivity {
         return dialog;
     }
      private void getItemDatabase(){
-         ListCategory.listcategory.clear();
+         if(ListCategory.listcategory!=null)
+         {
+             ListCategory.listcategory.clear();
+         }
          database=openOrCreateDatabase(DATABASE_NAME,MODE_PRIVATE,null);
          Cursor cursor =database.rawQuery("select cat_id,cat_name from Category",null);
          while (cursor.moveToNext()){
