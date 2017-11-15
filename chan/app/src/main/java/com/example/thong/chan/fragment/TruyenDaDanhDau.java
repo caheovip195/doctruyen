@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
@@ -26,13 +27,13 @@ import java.util.ArrayList;
 public class TruyenDaDanhDau extends Fragment {
     ArrayList<SubCateLike>ds=new ArrayList<>();
     RecyclerView recyclerView;
-    AdapterLike adapterLike=new AdapterLike(getActivity(),ds);
-
+    AdapterLike adapterLike;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.truyen_da_danh_dau, container, false);
         recyclerView=view.findViewById(R.id.list_like);
+        adapterLike=new AdapterLike(getActivity(),ds);
         loaddata();
         if(ds.size()<=0){
             TextView button =new TextView(getActivity());
@@ -44,10 +45,10 @@ public class TruyenDaDanhDau extends Fragment {
             layout.setGravity(Gravity.CENTER);
             layout.addView(button);
         }
-        else {
-            recyclerView.setAdapter(adapterLike);
-        }
-
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(llm);
+        recyclerView.setAdapter(adapterLike);
         return view;
     }
     private void loaddata(){
