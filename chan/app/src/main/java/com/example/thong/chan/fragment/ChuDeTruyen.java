@@ -45,15 +45,22 @@ public class ChuDeTruyen extends Fragment{
     RecyclerView recyclerView;
     AdapterChuDe adapterDocTruyen;
     ArrayList<SubCateLike>ds=new ArrayList<>();
+    ArrayList<SubCheck>dsCheck=new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fm_chudetruyen,null,false);
         Bundle bundle =getArguments();
+        SQLiteDatabase database =getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
+        Cursor cursor =database.rawQuery("select sub_cat_id,sub_cat_name,cat_id from ThichSubCate",null);
+        while (cursor.moveToNext()){
+            Log.e("cat_id & sub_cat_id",cursor.getString(2)+" && "+cursor.getString(0)+" "+cursor.getString(1));
+        }
+        cursor.close();
         final String key =bundle.getString("cat_id");
         String catname=bundle.getString("cat_name");
         recyclerView=view.findViewById(R.id.listthemtruyen);
-        adapterDocTruyen=new AdapterChuDe(getActivity(),ds,catname);
+        adapterDocTruyen=new AdapterChuDe(getActivity(),ds,catname,dsCheck);
         LinearLayoutManager manager =new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
@@ -89,7 +96,6 @@ public class ChuDeTruyen extends Fragment{
     }
 
     private void getdata(String key){
-        ArrayList<SubCheck>dsCheck=new ArrayList<>();
         database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
         Cursor cursor =database.rawQuery("select sub_cat_id,sub_cat_name,image,cat_id from SubCate where cat_id ="+key,null);
         Cursor cursor1=database.rawQuery("select sub_cat_id,sub_cat_name from ThichSubCate",null);

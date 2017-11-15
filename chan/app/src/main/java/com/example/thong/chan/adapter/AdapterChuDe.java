@@ -5,15 +5,14 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,10 +20,11 @@ import android.widget.Toast;
 
 import com.example.thong.chan.R;
 import com.example.thong.chan.fragment.TenTruyen;
-import com.example.thong.chan.mh_load.SubCate;
 import com.example.thong.chan.mh_load.SubCateLike;
+import com.example.thong.chan.mh_load.SubCheck;
 import com.squareup.picasso.Picasso;
 
+import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +32,12 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
     Activity activity;
     List<SubCateLike>ds=new ArrayList<>();
     String catename;
-    public AdapterChuDe(Activity activity, List<SubCateLike> ds,String catename) {
+    List<SubCheck>dsCheck;
+    public AdapterChuDe(Activity activity, List<SubCateLike> ds,String catename,List<SubCheck>dscheck) {
         this.activity = activity;
         this.ds = ds;
         this.catename=catename;
+        this.dsCheck=dscheck;
     }
 
     @Override
@@ -47,33 +49,47 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
 
     @Override
     public void onBindViewHolder(final RecycleViewHoder holder, final int position) {
-             holder.txt.setText(ds.get(position).getSub_cat_name());
+        final SQLiteDatabase database =activity.openOrCreateDatabase("doctruyen.sqlite", Context.MODE_PRIVATE,null);
+        holder.txt.setText(ds.get(position).getSub_cat_name());
              holder.txtmieuta.setText(catename);
              holder.txtstt.setText((position+1)+"");
-             if(Integer.parseInt(ds.get(position).getStatus())==1){
-                 holder.imglike.setImageResource(R.drawable.like11);
+             Cursor cursor1=database.rawQuery("select cat_id,sub_cat_id from ThichSubCate",null);
+             while (cursor1.moveToNext()){
+                 if(Integer.parseInt(ds.get(position).getCat_id())==Integer.parseInt(cursor1.getString(0))&&
+                         Integer.parseInt(ds.get(position).getSub_cat_id())==Integer.parseInt(cursor1.getString(1))){
+                     holder.imglike.setImageResource(R.drawable.like11);
+                     break;
+                 }
              }
-             else {
-                 holder.imglike.setImageResource(R.drawable.like2);
-             }
-             final SQLiteDatabase database =activity.openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
              holder.imglike.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                     if(Integer.parseInt(ds.get(position).getStatus())==1){
+                     boolean flag=false;
+                     Cursor cursor =database.rawQuery("select cat_id,sub_cat_id from ThichSubCate",null);
+                     while (cursor.moveToNext()){
+                         if(Integer.parseInt(ds.get(position).getCat_id())==Integer.parseInt(cursor.getString(0)) &&
+                                 Integer.parseInt(ds.get(position).getSub_cat_id())==Integer.parseInt(cursor.getString(1))){
+                             flag=true;
+                             break;
+                         }
+                     }
+                     cursor.close();
+                     if(flag==true){
+                         database.delete("ThichSubCate","cat_id=? and sub_cat_id=?"
+                                 ,new String[]{ds.get(position).getCat_id(),ds.get(position).getSub_cat_id()});
                          holder.imglike.setImageResource(R.drawable.like2);
-                         database.delete("ThichSubCate","sub_cat_id=? and cat_id=?",
-                                 new String[]{ds.get(position).getSub_cat_id(),ds.get(position).getCat_id()});
+                         Toast.makeText(activity, "Đã xóa thành công", Toast.LENGTH_SHORT).show();
+
                      }
                      else {
-                         holder.imglike.setImageResource(R.drawable.like11);
                          ContentValues contentValues =new ContentValues();
+                         contentValues.put("cat_id",ds.get(position).getCat_id());
                          contentValues.put("sub_cat_id",ds.get(position).getSub_cat_id());
                          contentValues.put("sub_cat_name",ds.get(position).getSub_cat_name());
                          contentValues.put("image",ds.get(position).getImage());
-                         contentValues.put("cat_id",ds.get(position).getCat_id());
-                         contentValues.put("status",1+"");
                          database.insert("ThichSubCate",null,contentValues);
+                         Toast.makeText(activity, "Đã thêm thành công", Toast.LENGTH_SHORT).show();
+                         holder.imglike.setImageResource(R.drawable.like11);
                      }
                  }
              });
