@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,6 +48,7 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
     @Override
     public void onBindViewHolder(final RecycleViewHoder holder, final int position) {
              holder.txt.setText(ds.get(position).getSub_cat_name());
+             holder.txtmieuta.setText(catename);
              holder.txtstt.setText((position+1)+"");
              if(Integer.parseInt(ds.get(position).getStatus())==1){
                  holder.imglike.setImageResource(R.drawable.like11);
@@ -90,7 +92,6 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
                      transaction.commit();
                  }
              });
-             Log.e("status",ds.get(position).getStatus()+"");
     }
 
     @Override
