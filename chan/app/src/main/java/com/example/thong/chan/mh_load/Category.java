@@ -12,6 +12,9 @@ public class Category {
 
     public Category() {
     }
+    public Category(String cat_id){
+        this.cat_id=cat_id;
+    }
 
     public String getCat_id() {
         return cat_id;
