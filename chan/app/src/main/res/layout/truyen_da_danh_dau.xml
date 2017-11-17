@@ -5,76 +5,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/FrameLayout1"
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="@color/color1">
 
         <LinearLayout
-            android:id="@+id/llTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:baselineAligned="false"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="1.0">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="0.9"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:ems="16"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:scrollHorizontally="true"
-                    android:singleLine="true"
-                    android:text="@string/app_name"
-                    android:textColor="#ffffffff"
-                    android:textSize="25.0sp"
-                    android:typeface="sans" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5.0dip"
-                android:layout_weight="0.1"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/im_timkiem"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="Seach"
-                    android:src="@drawable/timkiem" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llSeach"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="invisible">
+            android:layout_marginRight="50dp">
 
             <EditText
-                android:id="@+id/edtSeach"
+                android:id="@+id/edtSeach3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:ems="10"
@@ -84,19 +33,26 @@
                 android:textColor="#FFF"
                 android:textColorHint="#FFF"
                 android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/btClose"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:gravity="center"
-                android:text="x"
-                android:textColor="#FFF"
-                android:textSize="30sp" />
         </LinearLayout>
-    </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            >
+
+            <ImageView
+                android:id="@+id/im_timkiem"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:contentDescription="Seach"
+                android:src="@drawable/timkiem" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/layout_like"
