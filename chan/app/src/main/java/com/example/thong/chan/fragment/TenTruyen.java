@@ -119,6 +119,7 @@ public class TenTruyen extends Fragment {
     private void getdata(String key){
         database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
         Cursor cursor =database.rawQuery("select _id,title,content,thumbnail,sub_cat_id from App where sub_cat_id ="+key,null);
+        ds.clear();
         while (cursor.moveToNext()){
             ds.add(new App(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),null));
         }

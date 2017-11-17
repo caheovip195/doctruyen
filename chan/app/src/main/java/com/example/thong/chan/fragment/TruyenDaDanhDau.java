@@ -57,6 +57,7 @@ public class TruyenDaDanhDau extends Fragment {
         return view;
     }
     private void loaddata(){
+        ds.clear();
         SQLiteDatabase database =getActivity().openOrCreateDatabase("doctruyen.sqlite", Context.MODE_PRIVATE,null);
         Cursor cursor =database.rawQuery("select sub_cat_id,sub_cat_name,image from ThichSubCate",null);
         while (cursor.moveToNext()){
