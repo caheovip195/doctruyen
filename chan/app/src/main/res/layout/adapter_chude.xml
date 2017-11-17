@@ -69,6 +69,7 @@
             android:layout_toRightOf="@+id/linearLayout2"
             android:gravity="center"
             android:text="10"
+            android:textSize="19sp"
             android:textColor="#ff0000" />
 
         <TextView
@@ -100,6 +101,6 @@
             android:gravity="right"
             android:layout_toEndOf="@+id/linearLayout2"
             android:layout_toRightOf="@+id/linearLayout2"
-            android:text="Tác giả:..." />
+            android:text="" />
     </RelativeLayout>
 </LinearLayout>

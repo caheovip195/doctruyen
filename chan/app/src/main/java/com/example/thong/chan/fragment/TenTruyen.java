@@ -132,8 +132,8 @@ public class TenTruyen extends Fragment {
         final Dialog dialog =new Dialog(getActivity());
         dialog.setContentView(R.layout.loadprogressbar);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setCancelable(false);
+        //dialog.setCanceledOnTouchOutside(false);
+        //dialog.setCancelable(false);
         dialog.show();
         JsonObjectRequest request =new JsonObjectRequest(api_data.App + id, null, new Response.Listener<JSONObject>() {
             @Override
