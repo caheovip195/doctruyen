@@ -22,19 +22,20 @@
             android:inputType="textPersonName"/>
 
         <EditText
+            android:id="@+id/edttieude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Tiêu Đề:" />
+            android:hint="Tiêu Đề:"
+            android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/edtnoidung"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Nội Dung" />
+            android:hint="Nội Dung"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/btnsendemail"

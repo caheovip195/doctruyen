@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -31,21 +32,21 @@ public class ThongTinApp extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mview1 = inflater.inflate(R.layout.thong_tin_app, container, false);
-        getUiInitiazalization();
+        getUiInitiazalization(mview1);
         return mview1;
     }
 
-    public void getUiInitiazalization() {
-        Button startBtn = (Button) mview1.findViewById(R.id.btnsendemail);
+    public void getUiInitiazalization(final View mview1) {
+        Button startBtn = (Button) this.mview1.findViewById(R.id.btnsendemail);
         startBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                sendEmail();
+                sendEmail(mview1);
             }
         });
 
     }
 
-    protected void sendEmail() {
+    protected void sendEmail(View mview1) {
         Log.i("Send email", "");
         String[] TO = {"tnthong.oplai@gmail.com"};
         String[] CC = {"congnt95.oplai@gmail.com"};
@@ -54,8 +55,10 @@ public class ThongTinApp extends Fragment implements View.OnClickListener {
         emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Tiêu Đề");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Nội dung Email");
+        EditText edt1=mview1.findViewById(R.id.edttieude);
+        EditText edt2=mview1.findViewById(R.id.edtnoidung);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, edt1.getText());
+        emailIntent.putExtra(Intent.EXTRA_TEXT, edt2.getText());
         try {
             startActivity(Intent.createChooser(emailIntent, "Gửi Email..."));
 

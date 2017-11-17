@@ -97,16 +97,26 @@ public class ManHinhLoad extends AppCompatActivity {
     }
      private void getItemDatabase(){
 
-         if(ListCategory.listcategory!=null){
+         if(ListCategory.listcategory!=null)
+         {
              ListCategory.listcategory.clear();
          }
          database=openOrCreateDatabase(DATABASE_NAME,MODE_PRIVATE,null);
          Cursor cursor =database.rawQuery("select cat_id,cat_name from Category",null);
          while (cursor.moveToNext()){
-             ListCategory.listcategory.add(new Category(cursor.getString(0),cursor.getString(1),null));
+             ListCategory.listcategory.add(new Category(cursor.getString(0),cursor.getString(1),""));
          }
          cursor.close();
-         startActivity(new Intent(this,MainActivity.class));
+         if(ListCategory.listcategory==null){
+             Dialog dialog =new Dialog(this);
+             dialog.setTitle("Not connected !");
+             dialog.setCancelable(false);
+             dialog.setCanceledOnTouchOutside(false);
+             dialog.show();
+         }
+         else{
+             startActivity(new Intent(this,MainActivity.class));
+         }
      }
     private boolean checkInternet(){
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
