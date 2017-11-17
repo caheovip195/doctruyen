@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/RelativeLayout1"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:orientation="vertical">
-
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
-    android:gravity="center" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:gravity="center">
 
     <ProgressBar
         android:id="@+id/progressBar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
         android:indeterminateDrawable="@drawable/my_progress_indeterminate" />
-
     <TextView
         android:textColor="#ffffff"
         android:id="@+id/tvNotify"
@@ -28,5 +18,3 @@ android:orientation="vertical">
         android:text="Đang tải..."
         android:textSize="17sp" />
 </LinearLayout>
-
-</RelativeLayout>

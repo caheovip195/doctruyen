@@ -87,14 +87,6 @@ public class ChuDeTruyen extends Fragment{
         return false;
     }
 
-    private void getItemDatabase(String key){
-        database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
-        Cursor cursor =database.rawQuery("select id from SubCate where cat_id ="+key,null);
-        while (cursor.moveToNext()){
-        }
-        cursor.close();
-    }
-
     private void getdata(String key){
         database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
         Cursor cursor =database.rawQuery("select sub_cat_id,sub_cat_name,image,cat_id from SubCate where cat_id ="+key,null);
