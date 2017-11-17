@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,6 +30,9 @@ public class TruyenDaDanhDau extends Fragment {
     ArrayList<SubCateLike>ds=new ArrayList<>();
     RecyclerView recyclerView;
     AdapterLike adapterLike;
+    ImageView imgSearch;
+    EditText edtSearch;
+    TextView txtClose;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

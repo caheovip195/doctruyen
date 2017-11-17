@@ -54,12 +54,37 @@ public class ManHinhLoad extends AppCompatActivity {
                 loadData(dialogInformation());
             }
             else {
-                getItemDatabase();
+               if(checkCout_database()==false){
+                   //Khong co du lieu .Show Dialog thong bao
+                   dialognotConnected().show();
+               }
+               else {
+                   getItemDatabase();
+               }
             }
         }
         else {
-            getItemDatabase();
+           if(checkCout_database()==false){
+               //show thong bao khong co du lieu
+               dialognotConnected().show();
+           }
+           else {
+               getItemDatabase();
+           }
         }
+    }
+    private boolean checkCout_database(){
+        database =openOrCreateDatabase("doctruyen.sqlite",MODE_PRIVATE,null);
+        ArrayList<Category>ds =new ArrayList<>();
+        Cursor cursor =database.rawQuery("select id from Category",null);
+        while (cursor.moveToNext()){
+           ds.add(new Category(cursor.getString(0)));
+        }
+        cursor.close();
+        if(ds.size()<=0){
+            return  false;
+        }
+        return true;
     }
     private Dialog dialogInformation(){
         Dialog dialog =new Dialog(this);
@@ -71,6 +96,7 @@ public class ManHinhLoad extends AppCompatActivity {
         return dialog;
     }
      private void getItemDatabase(){
+
          if(ListCategory.listcategory!=null)
          {
              ListCategory.listcategory.clear();
@@ -102,9 +128,17 @@ public class ManHinhLoad extends AppCompatActivity {
         }
     }
     private Dialog dialognotConnected(){
-        Dialog dialog=new Dialog(this);
+        AlertDialog.Builder builder =new AlertDialog.Builder(ManHinhLoad.this);
+        builder.setTitle("Lỗi !")
+                .setMessage("Vui lòng bật mạng để tải dữ liệu lần đầu !")
+                .setNegativeButton("Reload !", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        loadData(dialogInformation());
+                    }
+                });
+        Dialog dialog =builder.create();
         dialog.setCancelable(false);
-        dialog.setTitle("Not connected internet !");
         dialog.setCanceledOnTouchOutside(false);
         return dialog;
     }

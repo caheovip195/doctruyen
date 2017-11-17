@@ -1,9 +1,7 @@
 package com.example.thong.chan.fragment;
-
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.example.thong.chan.R;
-import com.example.thong.chan.mh_load.ManHinhLoad;
-
 public class ManHinhChinh extends Fragment {
     ImageView img,img1,img2;
 
@@ -28,6 +23,8 @@ public class ManHinhChinh extends Fragment {
 
             @Override
             public void onClick(View view) {
+              //  getActivity().getActionBar().setTitle("Thông Tin App");
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Thông Tin App");
                 FragmentManager manager =getActivity().getFragmentManager();
                 FragmentTransaction transaction=manager.beginTransaction();
                 transaction.replace(R.id.content_frame,new ThongTinApp());
@@ -42,6 +39,8 @@ public class ManHinhChinh extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentManager manager =getFragmentManager();
+               // getActivity().getActionBar().setTitle("Truyện Đã Đánh Dấu");
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Truyện Đã Đánh Dấu");
                 FragmentTransaction transaction =manager.beginTransaction();
                 transaction.addToBackStack("m2");
                 transaction.replace(R.id.content_frame,new TruyenDaDanhDau());
