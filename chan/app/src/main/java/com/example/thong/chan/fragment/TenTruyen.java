@@ -117,9 +117,9 @@ public class TenTruyen extends Fragment {
     }
 
     private void getdata(String key){
+        ds.clear();
         database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
         Cursor cursor =database.rawQuery("select _id,title,content,thumbnail,sub_cat_id from App where sub_cat_id ="+key,null);
-        ds.clear();
         while (cursor.moveToNext()){
             ds.add(new App(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),null));
         }
@@ -132,8 +132,8 @@ public class TenTruyen extends Fragment {
         final Dialog dialog =new Dialog(getActivity());
         dialog.setContentView(R.layout.loadprogressbar);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setCancelable(false);
+       // dialog.setCanceledOnTouchOutside(true);
+       // dialog.setCancelable(false);
         dialog.show();
         JsonObjectRequest request =new JsonObjectRequest(api_data.App + id, null, new Response.Listener<JSONObject>() {
             @Override

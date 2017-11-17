@@ -212,10 +212,8 @@ public class ChuDeTruyen extends Fragment{
                         getActivity().finish();
                     }
                 });
-                Dialog dialog =builder.create();
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.show();
+                Dialog dialog1=builder.create();
+                dialog1.show();
             }
         });
         requestQueue =Volley.newRequestQueue(getActivity());
