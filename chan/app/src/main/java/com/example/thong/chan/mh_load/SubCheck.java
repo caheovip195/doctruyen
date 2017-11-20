@@ -5,11 +5,20 @@ package com.example.thong.chan.mh_load;
  */
 
 public class SubCheck {
-    private String sub_cat_id,cat_id;
+    private String sub_cat_id,cat_id,app_id;
 
-    public SubCheck(String sub_cat_id, String cat_id) {
+    public String getApp_id() {
+        return app_id;
+    }
+
+    public void setApp_id(String app_id) {
+        this.app_id = app_id;
+    }
+
+    public SubCheck(String sub_cat_id, String cat_id, String app_id) {
         this.sub_cat_id = sub_cat_id;
         this.cat_id = cat_id;
+        this.app_id=app_id;
     }
 
     public SubCheck() {

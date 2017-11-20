@@ -22,12 +22,13 @@ import android.widget.TextView;
 
 import com.example.thong.chan.R;
 import com.example.thong.chan.adapter.AdapterLike;
+import com.example.thong.chan.mh_load.DanhSachLike;
 import com.example.thong.chan.mh_load.SubCateLike;
 
 import java.util.ArrayList;
 
 public class TruyenDaDanhDau extends Fragment {
-    ArrayList<SubCateLike>ds=new ArrayList<>();
+    ArrayList<DanhSachLike>ds=new ArrayList<>();
     RecyclerView recyclerView;
     AdapterLike adapterLike;
     ImageView imgSearch;
@@ -59,9 +60,13 @@ public class TruyenDaDanhDau extends Fragment {
     private void loaddata(){
         ds.clear();
         SQLiteDatabase database =getActivity().openOrCreateDatabase("doctruyen.sqlite", Context.MODE_PRIVATE,null);
-        Cursor cursor =database.rawQuery("select sub_cat_id,sub_cat_name,image from ThichSubCate",null);
+        Cursor cursor =database.rawQuery("select title_app,content_app,author_app,image from ThichSubCate",null);
         while (cursor.moveToNext()){
-             ds.add(new SubCateLike(cursor.getString(0),cursor.getString(1),cursor.getString(2)));
+            // ds.add(new SubCateLike(cursor.getString(0),cursor.getString(1),cursor.getString(2)));
+            ds.add(new DanhSachLike(cursor.getString(0),
+                    cursor.getString(3)
+                    ,cursor.getString(1),
+                    cursor.getColumnName(2)));
         }
         cursor.close();
         adapterLike.notifyDataSetChanged();

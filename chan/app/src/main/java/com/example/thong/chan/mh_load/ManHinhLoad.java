@@ -103,19 +103,24 @@ public class ManHinhLoad extends AppCompatActivity {
          }
          database=openOrCreateDatabase(DATABASE_NAME,MODE_PRIVATE,null);
          Cursor cursor =database.rawQuery("select cat_id,cat_name from Category",null);
+         ArrayList<Category>list=new ArrayList<>();
          while (cursor.moveToNext()){
-             ListCategory.listcategory.add(new Category(cursor.getString(0),cursor.getString(1),""));
+             //ListCategory.listcategory.add(new Category(cursor.getString(0),cursor.getString(1),""));
+             list.add(new Category(cursor.getString(0),cursor.getString(1),""));
+             Log.e("tt","cat_id"+cursor.getString(0)+"  cat_name"+cursor.getString(1));
          }
          cursor.close();
-         if(ListCategory.listcategory==null){
+         if(list.size()<=0){
              Dialog dialog =new Dialog(this);
-             dialog.setTitle("Not connected !");
+             dialog.setTitle("Vui lòng bật mạng để tải dữ liệu lần đầu để tải dữ liệu !");
              dialog.setCancelable(false);
              dialog.setCanceledOnTouchOutside(false);
              dialog.show();
          }
          else{
+             ListCategory.listcategory=list;
              startActivity(new Intent(this,MainActivity.class));
+             finish();
          }
      }
     private boolean checkInternet(){

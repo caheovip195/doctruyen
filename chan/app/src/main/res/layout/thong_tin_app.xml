@@ -17,7 +17,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Họ Tên:"
+            android:hint="@string/h_t_n"
             android:ems="10"
             android:inputType="textPersonName"/>
 
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Tiêu Đề:"
+            android:hint="@string/ti_u"
             android:inputType="textPersonName" />
 
         <EditText
@@ -34,14 +34,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Nội Dung"
+            android:hint="@string/n_i_dung"
             android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/btnsendemail"
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:text="Gửi Email" />
+            android:text="@string/g_i_email" />
 
     </LinearLayout>
 
@@ -60,7 +60,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="2dp"
             android:gravity="center"
-            android:text="Nhóm phát triển ứng dụng"
+            android:text="@string/nh_m_ph_t_tri_n_ng_d_ng"
             android:textColor="#ff8d4f"
             android:textSize="20sp" />
 
@@ -69,7 +69,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="2dp"
             android:gravity="center"
-            android:text="Hoàng Văn Quỳnh"
+            android:text="@string/ho_ng_v_n_qu_nh"
             android:textColor="#ff8d4f"
             android:textSize="20sp" />
 
@@ -78,7 +78,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="2dp"
             android:gravity="center"
-            android:text="Trương Nho Thông"
+            android:text="@string/tr_ng_nho_th_ng"
             android:textColor="#ff8d4f"
             android:textSize="20sp" />
 
@@ -87,7 +87,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="2dp"
             android:gravity="center"
-            android:text="Nguyễn Thành Công"
+            android:text="@string/nguy_n_th_nh_c_ng"
             android:textColor="#ff8d4f"
             android:textSize="20sp"
             android:layout_marginBottom="40dp"/>

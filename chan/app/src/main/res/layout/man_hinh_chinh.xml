@@ -21,7 +21,8 @@
                 android:layout_weight="1"
                 android:padding="3dp"
                 android:layout_marginTop="2dp"
-                android:src="@drawable/bt_doctruyen" />
+                android:src="@drawable/img_doctruyen1"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/imDanhdau"
@@ -29,7 +30,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
-                android:src="@drawable/bt_danhdau" />
+                android:src="@drawable/img_danhdau1"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/imThongtin"
@@ -39,7 +41,8 @@
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
                 android:padding="3dp"
-                android:src="@drawable/bt_thongtin" />
+                android:src="@drawable/img_thongtin1"
+                android:contentDescription="@string/todo" />
 
         </LinearLayout>
 

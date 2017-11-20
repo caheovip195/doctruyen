@@ -6,4 +6,22 @@
     <color name="color2">#ffffff</color>
 
     <string name="action_settings">Settings</string>
+    <string name="c_truy_n">Đọc Truyện</string>
+    <string name="todo">TODO</string>
+
+    <string name="c_truy_n_offline">Đọc Truyện Offline</string>
+    <string name="ch_c_c_c_b_n_c_truy_n_vui_v">Chúc Các Bạn Đọc Truyện Vui Vẻ</string>
+    <string name="_10">10</string>
+    <string name="c_ti_p">Đọc tiếp...</string>
+    <string name="t_c_gi">Tác Giả:...</string>
+    <string name="h_t_n">Họ Tên:</string>
+    <string name="ti_u">Tiêu Đề:</string>
+    <string name="n_i_dung">Nội Dung</string>
+    <string name="g_i_email">Gửi Email</string>
+    <string name="nh_m_ph_t_tri_n_ng_d_ng">Nhóm phát triển ứng dụng</string>
+    <string name="ho_ng_v_n_qu_nh">Hoàng Văn Quỳnh</string>
+    <string name="tr_ng_nho_th_ng">Trương Nho Thông</string>
+    <string name="nguy_n_th_nh_c_ng">Nguyễn Thành Công</string>
+    <string name="nh_p_t_c_n_t_m_ki_m">Nhập từ cần tìm kiếm</string>
+    <string name="seach">Seach</string>
 </resources>

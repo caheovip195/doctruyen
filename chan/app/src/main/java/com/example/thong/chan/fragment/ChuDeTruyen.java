@@ -45,7 +45,7 @@ public class ChuDeTruyen extends Fragment{
     RecyclerView recyclerView;
     AdapterChuDe adapterDocTruyen;
     ArrayList<SubCateLike>ds=new ArrayList<>();
-    ArrayList<SubCheck>dsCheck=new ArrayList<>();
+   // ArrayList<SubCheck>dsCheck=new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class ChuDeTruyen extends Fragment{
         final String key =bundle.getString("cat_id");
         String catname=bundle.getString("cat_name");
         recyclerView=view.findViewById(R.id.listthemtruyen);
-        adapterDocTruyen=new AdapterChuDe(getActivity(),ds,catname,dsCheck);
+        adapterDocTruyen=new AdapterChuDe(getActivity(),ds,catname);
         LinearLayoutManager manager =new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
@@ -90,37 +90,14 @@ public class ChuDeTruyen extends Fragment{
     private void getdata(String key){
         database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
         Cursor cursor =database.rawQuery("select sub_cat_id,sub_cat_name,image,cat_id from SubCate where cat_id ="+key,null);
-        Cursor cursor1=database.rawQuery("select sub_cat_id,sub_cat_name from ThichSubCate",null);
-        while (cursor1.moveToNext()){
-            dsCheck.add(new SubCheck(cursor1.getString(0),cursor1.getString(1)));
-           // Log.e("sub_cat_id",cursor1.getString(0));
-           // Log.e("cat_id",cursor1.getString(1));
-        }
-        cursor1.close();
+        ds.clear();
         while (cursor.moveToNext()){
-          //  Log.e("cat_id",cursor.getString(3));
-           // Log.e("sub_cat_id",cursor.getString(0));
-
-            int t=dsCheck.size()-1;
-            boolean flag=false;
-            for(SubCheck check:dsCheck){
-                if(Integer.parseInt(cursor.getString(0))==Integer.parseInt(check.getSub_cat_id()) &&
-                        Integer.parseInt(cursor.getString(3))==Integer.parseInt(check.getCat_id())){
-                    flag=true;
-                }
-            }
-            if(flag==true){
-                ds.add(new SubCateLike(cursor.getString(0)
-                        ,cursor.getString(1)
-                        ,cursor.getString(2)
-                        ,cursor.getString(3),1+""));
-            }
-            else {
+            Log.e("cat_id",cursor.getString(3));
+            Log.e("sub_cat_id",cursor.getString(0));
                 ds.add(new SubCateLike(cursor.getString(0)
                         ,cursor.getString(1)
                         ,cursor.getString(2)
                         ,cursor.getString(3),0+""));
-            }
         }
         cursor.close();
         adapterDocTruyen.notifyDataSetChanged();
@@ -142,11 +119,6 @@ public class ChuDeTruyen extends Fragment{
                     JSONArray arr= response.getJSONArray("results");
                     SQLiteDatabase database =getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
                     Cursor cursor =database.rawQuery("select sub_cat_id ,cat_id from ThichSubCate",null);
-                    ArrayList<SubCheck>isother=new ArrayList<>();
-                    while (cursor.moveToNext()){
-                        isother.add(new SubCheck(cursor.getString(0),cursor.getString(1)));
-                    }
-                    cursor.close();
                     for (int i=0;i<arr.length();i++) {
                         boolean flag = false;
                         JSONObject obj = arr.getJSONObject(i);
@@ -156,31 +128,11 @@ public class ChuDeTruyen extends Fragment{
                         contentValues.put("image", obj.getString("image"));
                         contentValues.put("cat_id", obj.getString("cat_id"));
                         database.insert("SubCate", null, contentValues);
-                        for (SubCheck check : isother) {
-                            if (Integer.parseInt(check.getCat_id()) == Integer.parseInt(obj.getString("sub_cat_id"))
-                                    && Integer.parseInt(check.getCat_id()) == Integer.parseInt(obj.getString("cat_id"))) {
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if (flag == true) {
-                            ds.add(new SubCateLike(obj.getString("sub_cat_id"),
-                                    obj.getString("sub_cat_name"),
-                                    obj.getString("image"),
-                                    obj.getString("cat_id"),
-                                    1 + ""));
-                            Log.e("giongnhau",obj.getString("sub_cat_id"));
-
-                        } else {
-                            ds.add(new SubCateLike(obj.getString("sub_cat_id"),
-                                    obj.getString("sub_cat_name"),
-                                    obj.getString("image"),
-                                    obj.getString("cat_id"),
-                                    0 + ""));
-                        }
-                    }
-                    for (SubCateLike sta :ds){
-
+                        ds.add(new SubCateLike(obj.getString("sub_cat_id"),
+                                obj.getString("sub_cat_name"),
+                                obj.getString("image"),
+                                obj.getString("cat_id"),
+                                0 + ""));
                     }
                     dialog.cancel();
                     adapterDocTruyen.notifyDataSetChanged();

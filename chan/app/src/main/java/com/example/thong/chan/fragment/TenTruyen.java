@@ -41,8 +41,8 @@ public class TenTruyen extends Fragment {
 
     SQLiteDatabase database;
     ArrayList<App>ds=new ArrayList<>();
-     RecyclerView recyclerView;
-     AdapterTenTruyen adapterTenTruyen;
+    RecyclerView recyclerView;
+    AdapterTenTruyen adapterTenTruyen;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -51,48 +51,19 @@ public class TenTruyen extends Fragment {
         final String key =bundle.getString("sub_cat_id");
         recyclerView=view.findViewById(R.id.listtentruyen);
         adapterTenTruyen=new AdapterTenTruyen(getActivity(),ds);
-        getdata(key);
         LinearLayoutManager manager =new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapterTenTruyen);
-        if(getCountItemDatabase(key)>0){
-            SharedPreferences sharedPreferences =getActivity().getSharedPreferences("item_sum",Context.MODE_PRIVATE);
-            int sum_SubCate=sharedPreferences.getInt(key,0);
-            if(sum_SubCate==getCountItemDatabase(key)){
-                //Load list len
+        if(checkinternet()==true){
+            loaddata(key);
+        }
+        else{
+            if(getCountItemDatabase(key)==0){
+                loaddata(key);
             }
             else {
-                loaddata(key);
-            }
-            //  Toast.makeText(getActivity(), "sizedatabase:"+getCountItemDatabase(key)+" sizeload:"+sum_SubCate, Toast.LENGTH_LONG).show();
-
-        }
-        else {
-            if(checkinternet()){
-                loaddata(key);
-            }
-            else{
-                AlertDialog.Builder builder =new AlertDialog.Builder(getActivity());
-                builder.setTitle("Error!")
-                        .setMessage("Not connected !")
-                        .setCancelable(false)
-                        .setInverseBackgroundForced(false)
-                        .setNegativeButton("Reload", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                loaddata(key);
-                            }
-                        });
-                builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        getActivity().onBackPressed();
-                        getActivity().finish();
-                    }
-                });
-                Dialog dialog =builder.create();
-                dialog.show();
+                getdata(key);
             }
         }
         return view;
@@ -119,9 +90,16 @@ public class TenTruyen extends Fragment {
     private void getdata(String key){
         ds.clear();
         database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
-        Cursor cursor =database.rawQuery("select _id,title,content,thumbnail,sub_cat_id from App where sub_cat_id ="+key,null);
+        Cursor cursor =database.rawQuery("select _id,title,content,thumbnail,sub_cat_id,cat_id,author from App where sub_cat_id ="+key,null);
         while (cursor.moveToNext()){
-            ds.add(new App(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),null));
+           // ds.add(new App(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),null,cursor.getString(5)));
+            ds.add(new App(cursor.getString(0)
+                    ,cursor.getString(1)
+                    ,cursor.getString(2)
+                    ,cursor.getString(3)
+                    ,cursor.getString(4)
+                    ,cursor.getString(5)
+                    ,cursor.getString(6)));
         }
         cursor.close();
        // .notifyDataSetChanged();
@@ -140,6 +118,7 @@ public class TenTruyen extends Fragment {
             public void onResponse(JSONObject response) {
                 database =getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
                 database.delete("App","sub_cat_id="+id,null);
+                ds.clear();
                 try {
                     JSONArray arr= response.getJSONArray("results");
                     for (int i=0;i<arr.length();i++){
@@ -150,16 +129,21 @@ public class TenTruyen extends Fragment {
                         contentValues.put("content",obj.getString("content"));
                         contentValues.put("thumbnail",obj.getString("thumbnail"));
                         contentValues.put("sub_cat_id",obj.getString("sub_cat_id"));
-                        Log.e("cat_id",obj.getString("id"));
+                        contentValues.put("author",obj.getString("author"));
+                        contentValues.put("cat_id",obj.getString("cat_id"));
+                        Log.e("app_id",obj.getString("id"));
                         database.insert("App",null,contentValues);
+                        ds.add(new App(obj.getString("id"),
+                                obj.getString("title"),
+                                obj.getString("content"),
+                                obj.getString("thumbnail"),
+                                obj.getString("sub_cat_id"),
+                                obj.getString("cat_id"),
+                                obj.getString("author")));
                     }
-                    dialog.cancel();
-                    SharedPreferences sharedPreferences =getActivity().getSharedPreferences("item_sum",Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor =sharedPreferences.edit();
-                    editor.putInt(id,arr.length());
-                    editor.commit();
-                    getdata(id);
-                    //
+                    adapterTenTruyen.notifyDataSetChanged();
+                    dialog.dismiss();
+                    dialog.hide();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -177,7 +161,16 @@ public class TenTruyen extends Fragment {
                         .setNegativeButton("Reload", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                getFragmentManager().beginTransaction().detach(new ChuDeTruyen()).attach(new ChuDeTruyen()).commit();
+
+                            if(checkinternet()==false){
+
+                                dialog.dismiss();
+                                getdata(id);
+                            }
+                            else {
+                                dialog.dismiss();
+                                getFragmentManager().beginTransaction().detach(new TenTruyen()).attach(new TenTruyen()).commit();
+                            }
                             }
                         });
                 builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -187,10 +180,10 @@ public class TenTruyen extends Fragment {
                         getActivity().finish();
                     }
                 });
-                Dialog dialog =builder.create();
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.show();
+                Dialog dialog1 =builder.create();
+                dialog1.setCancelable(false);
+                dialog1.setCanceledOnTouchOutside(false);
+                dialog1.show();
             }
         });
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
