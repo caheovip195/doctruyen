@@ -4,7 +4,7 @@
     android:id="@+id/listten"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="1">
+    android:weightSum="1" android:baselineAligned="false">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                 android:layout_height="30dp"
                 android:gravity="center"
                 android:textSize="19sp"
-                android:text="10"
+                android:text="@string/_10"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/lntentruyen"
                 android:layout_toRightOf="@+id/lntentruyen"
@@ -64,7 +64,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:gravity="right"
-            android:text="Đọc tiếp..."
+            android:text="@string/c_ti_p"
             android:textColor="#000000" />
 
         <TextView
@@ -82,7 +82,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            app:srcCompat="@drawable/like2" />
+            app:srcCompat="@drawable/like2" android:contentDescription="@string/todo" />
 
         <TextView
             android:id="@+id/tentacgia"
@@ -95,6 +95,6 @@
             android:layout_toLeftOf="@+id/nutlike"
             android:layout_toRightOf="@+id/txtstt"
             android:layout_toStartOf="@+id/nutlike"
-            android:text="Tác Giả:..." />
+            android:text="@string/t_c_gi" />
     </RelativeLayout>
 </LinearLayout>

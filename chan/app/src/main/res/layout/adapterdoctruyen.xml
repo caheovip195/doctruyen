@@ -4,10 +4,10 @@
     android:id="@+id/listchude"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="1">
+    android:weightSum="1" android:baselineAligned="false">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
@@ -53,7 +53,7 @@
             android:layout_toEndOf="@+id/linearLayout2"
             android:layout_toRightOf="@+id/linearLayout2"
             android:textSize="19sp"
-            android:text="10"
+            android:text="@string/_10"
             android:gravity="center"
             android:textColor="#ff0202" />
 
