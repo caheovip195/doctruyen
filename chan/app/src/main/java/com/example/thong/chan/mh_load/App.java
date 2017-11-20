@@ -1,14 +1,23 @@
 package com.example.thong.chan.mh_load;
 
 public class App {
-    private String id,title,content,thumbnail,sub_cat_id,cat_id;
-    public App(String id, String title, String content, String thumbnail, String sub_cat_id, String cat_id) {
+    public String getAuthor_app() {
+        return author_app;
+    }
+
+    public void setAuthor_app(String author_app) {
+        this.author_app = author_app;
+    }
+
+    private String id,title,content,thumbnail,sub_cat_id,cat_id,author_app;
+    public App(String id, String title, String content, String thumbnail, String sub_cat_id, String cat_id,String author_app) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.thumbnail = thumbnail;
         this.sub_cat_id = sub_cat_id;
         this.cat_id = cat_id;
+        this.author_app=author_app;
     }
 
     public App() {

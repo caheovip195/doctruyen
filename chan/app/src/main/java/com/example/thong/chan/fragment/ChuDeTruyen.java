@@ -119,11 +119,6 @@ public class ChuDeTruyen extends Fragment{
                     JSONArray arr= response.getJSONArray("results");
                     SQLiteDatabase database =getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
                     Cursor cursor =database.rawQuery("select sub_cat_id ,cat_id from ThichSubCate",null);
-                    ArrayList<SubCheck>isother=new ArrayList<>();
-                    while (cursor.moveToNext()){
-                        isother.add(new SubCheck(cursor.getString(0),cursor.getString(1)));
-                    }
-                    cursor.close();
                     for (int i=0;i<arr.length();i++) {
                         boolean flag = false;
                         JSONObject obj = arr.getJSONObject(i);
@@ -133,31 +128,11 @@ public class ChuDeTruyen extends Fragment{
                         contentValues.put("image", obj.getString("image"));
                         contentValues.put("cat_id", obj.getString("cat_id"));
                         database.insert("SubCate", null, contentValues);
-                        for (SubCheck check : isother) {
-                            if (Integer.parseInt(check.getCat_id()) == Integer.parseInt(obj.getString("sub_cat_id"))
-                                    && Integer.parseInt(check.getCat_id()) == Integer.parseInt(obj.getString("cat_id"))) {
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if (flag == true) {
-                            ds.add(new SubCateLike(obj.getString("sub_cat_id"),
-                                    obj.getString("sub_cat_name"),
-                                    obj.getString("image"),
-                                    obj.getString("cat_id"),
-                                    1 + ""));
-                            Log.e("giongnhau",obj.getString("sub_cat_id"));
-
-                        } else {
-                            ds.add(new SubCateLike(obj.getString("sub_cat_id"),
-                                    obj.getString("sub_cat_name"),
-                                    obj.getString("image"),
-                                    obj.getString("cat_id"),
-                                    0 + ""));
-                        }
-                    }
-                    for (SubCateLike sta :ds){
-
+                        ds.add(new SubCateLike(obj.getString("sub_cat_id"),
+                                obj.getString("sub_cat_name"),
+                                obj.getString("image"),
+                                obj.getString("cat_id"),
+                                0 + ""));
                     }
                     dialog.cancel();
                     adapterDocTruyen.notifyDataSetChanged();
@@ -189,10 +164,8 @@ public class ChuDeTruyen extends Fragment{
                         getActivity().finish();
                     }
                 });
-                Dialog dialog =builder.create();
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.show();
+                Dialog dialog1=builder.create();
+                dialog1.show();
             }
         });
         requestQueue =Volley.newRequestQueue(getActivity());

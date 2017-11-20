@@ -16,15 +16,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.thong.chan.R;
 import com.example.thong.chan.fragment.TenTruyen;
 import com.example.thong.chan.mh_load.SubCateLike;
-import com.example.thong.chan.mh_load.SubCheck;
 import com.squareup.picasso.Picasso;
-
-import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.List;
 
