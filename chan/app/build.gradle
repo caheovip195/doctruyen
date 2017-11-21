@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
+    compileOptions.encoding="UTF-8"
     defaultConfig {
         applicationId "com.example.thong.chan"
         minSdkVersion 21
