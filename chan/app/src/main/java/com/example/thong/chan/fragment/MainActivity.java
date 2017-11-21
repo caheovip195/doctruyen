@@ -6,7 +6,11 @@ import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,28 +25,24 @@ import android.view.WindowManager;
 
 import com.example.thong.chan.R;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    Toolbar toolbar;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        this.getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+         setSupportActionBar(toolbar);
+         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -51,14 +51,26 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+   @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        toolbar.setNavigationIcon(R.drawable.iconnavigation);
+    }
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+
+        if(getFragmentManager().getBackStackEntryCount()>0){
+            getFragmentManager().popBackStack();
+            Log.e("tagfm","fmChuDe");
         }
+        else{
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
+        }
+
     }
 
     @Override
@@ -83,17 +95,46 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fragmentManager = getFragmentManager();
+        int stackSize = getFragmentManager().getBackStackEntryCount();
+        if(stackSize>0){
+            FragmentManager manager =getFragmentManager();
+            for(int i=0;i<stackSize;i++){
+                getFragmentManager().popBackStackImmediate();
+            }
+        }
+         Log.e("stacksize",stackSize+"");
+        if(id== R.id.trangchu){
+            changeFragment(new ManHinhChinh());
+            toolbar.setTitle("Trang Chủ");
+        }
+        else
         if (id == R.id.doctruyen) {
             // Handle the camera action
-            changeFragment(new DocTruyen());
+            FragmentManager manager =getFragmentManager();
+            FragmentTransaction transaction =manager.beginTransaction();
+            transaction.addToBackStack("m1");
+            transaction.replace(R.id.content_frame,new DocTruyen());
+            transaction.commit();
+            toolbar.setTitle("Đọc Truyện");
         } else if (id == R.id.tddau) {
-            changeFragment(new TruyenDaDanhDau());
+            FragmentManager manager =getFragmentManager();
+            FragmentTransaction transaction =manager.beginTransaction();
+            transaction.addToBackStack("m2");
+            transaction.replace(R.id.content_frame,new TruyenDaDanhDau());
+            transaction.commit();
+            toolbar.setTitle("Truyện Đã Đánh Dấu");
+        } else if (id == R.id.tacgia) {
+            FragmentManager manager =getFragmentManager();
+            FragmentTransaction transaction =manager.beginTransaction();
+            transaction.addToBackStack("m2");
+            transaction.replace(R.id.content_frame,new TacGia());
+            transaction.commit();
         } else if (id == R.id.danhgia) {
             DanhGia.app_launched(this);
         } else if (id == R.id.tapp) {
@@ -111,7 +152,12 @@ public class MainActivity extends AppCompatActivity
                         Uri.parse("http://play.google.com/store/apps/details?id=" + getApplication().getPackageName())));
             }
         } else if (id == R.id.ttapp) {
-            changeFragment(new ThongTinApp());
+            FragmentManager manager =getFragmentManager();
+            FragmentTransaction transaction =manager.beginTransaction();
+            transaction.addToBackStack("m2");
+            transaction.replace(R.id.content_frame,new ThongTinApp());
+            transaction.commit();
+            toolbar.setTitle("Thông Tin App");
         } else if (id == R.id.share) {
             String linkApp = "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName();
             Intent intenShare = new Intent(Intent.ACTION_SEND);
@@ -119,8 +165,8 @@ public class MainActivity extends AppCompatActivity
             intenShare.putExtra(Intent.EXTRA_TEXT, linkApp);
             startActivity(Intent.createChooser(intenShare, "Chia sẻ app với bạn bè của bạn"));
         } else if (id == R.id.thoat) {
-            closeContextMenu();
-        }
+            finish();
+            }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -132,6 +178,7 @@ public class MainActivity extends AppCompatActivity
         manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.content_frame, fragment);
+        manager.popBackStack();
         transaction.commit();
 
     }

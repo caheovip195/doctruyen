@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/trangchu"
+            android:icon="@drawable/home"
+            android:title="Trang Chủ" />
+        <item
             android:id="@+id/doctruyen"
             android:icon="?android:attr/actionModeCopyDrawable"
             android:title="Đọc Truyện" />
@@ -12,6 +16,10 @@
             android:id="@+id/tddau"
             android:icon="@android:drawable/ic_input_get"
             android:title="Truyện Đã Đánh Dấu" />
+        <item
+            android:id="@+id/tacgia"
+            android:icon="@drawable/tacgia"
+            android:title="Tác Giả" />
         <item
             android:id="@+id/danhgia"
             android:icon="@android:drawable/stat_notify_chat"

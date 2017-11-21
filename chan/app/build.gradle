@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.thong.chan"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -29,4 +29,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.mostafagazar:customshapeimageview:1.0.4'
 }

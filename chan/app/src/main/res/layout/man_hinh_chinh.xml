@@ -2,7 +2,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/nenlon"
+        android:background="@drawable/background"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="1" >
@@ -10,36 +10,40 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.45"
+            android:layout_weight="0.46"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imBaithuoc"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="3dp"
+                android:layout_height="140dp"
                 android:layout_marginTop="2dp"
-                android:src="@drawable/bt_baithuoc" />
+                android:layout_weight="1"
+                android:contentDescription="@string/todo"
+                android:padding="3dp"
+                android:src="@drawable/img_doctruyen1" />
 
             <ImageView
                 android:id="@+id/imDanhdau"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_height="135dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="1"
-                android:src="@drawable/bt_danhdau" />
+                android:contentDescription="@string/todo"
+                android:src="@drawable/img_danhdau1" />
 
             <ImageView
                 android:id="@+id/imThongtin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_height="140dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/todo"
                 android:padding="3dp"
-                android:src="@drawable/bt_thongtin" />
+                android:src="@drawable/img_thongtin1" />
 
         </LinearLayout>
 
