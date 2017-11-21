@@ -69,6 +69,7 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
         holder.txtstt.setText((position+1)+"");
         String sub =ds.get(position).getContent().substring(0,30);
         holder.txtten.setText(ds.get(position).getTitle());
+        holder.txttacgia.setText("Tác giả: "+ds.get(position).getAuthor_app());
        // holder.txtmieuta.setText(sub);
         holder.nutlike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +135,7 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
     public class RecycleViewHolder extends RecyclerView.ViewHolder{
            LinearLayout layout;
            ImageView img,nutlike;
-           TextView txtten,txtstt,txtmieuta;
+           TextView txtten,txtstt,txtmieuta,txttacgia;
         public RecycleViewHolder(View itemView) {
             super(itemView);
             layout=itemView.findViewById(R.id.listten);
@@ -142,6 +143,7 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
             txtten=itemView.findViewById(R.id.txtten);
             txtstt=itemView.findViewById(R.id.txtstt);
             nutlike=itemView.findViewById(R.id.nutlike);
+            txttacgia=itemView.findViewById(R.id.tentacgia);
             //txtmieuta=itemView.findViewById(R.id.txtstt);
         }
     }
