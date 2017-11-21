@@ -6,7 +6,6 @@ import android.app.Fragment;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
@@ -29,8 +28,6 @@ import com.example.thong.chan.R;
 import com.example.thong.chan.adapter.AdapterTenTruyen;
 import com.example.thong.chan.api_data;
 import com.example.thong.chan.mh_load.App;
-import com.example.thong.chan.mh_load.SubCate;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
