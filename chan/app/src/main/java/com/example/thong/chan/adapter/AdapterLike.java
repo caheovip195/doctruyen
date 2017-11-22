@@ -47,6 +47,12 @@ public class AdapterLike extends RecyclerView.Adapter<AdapterLike.RecycleViewHol
                public void onClick(View v) {
                    Bundle bundle =new Bundle();
                    bundle.putString("content",ds.get(position).getContent());
+                   bundle.putString("tacgia",ds.get(position).getAuthor());
+                   bundle.putString("cat_id",ds.get(position).getCat_id());
+                   bundle.putString("sub_cat_id",ds.get(position).getSub_cat_id());
+                   bundle.putString("app_id",ds.get(position).getApp_id());
+                   bundle.putString("image",ds.get(position).getImage());
+                   bundle.putString("title",ds.get(position).getTitle());
                    DocContent content =new DocContent();
                    content.setArguments(bundle);
                    FragmentManager manager =activity.getFragmentManager();

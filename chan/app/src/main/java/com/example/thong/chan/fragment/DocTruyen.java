@@ -49,7 +49,6 @@ public class DocTruyen extends Fragment {
           }
       });
     }
-
     private void addViews(View view) {
         recyclerView=view.findViewById(R.id.listdoctruyen);
         adapter=new AdapterDocTruyen(ListCategory.listcategory,getActivity());

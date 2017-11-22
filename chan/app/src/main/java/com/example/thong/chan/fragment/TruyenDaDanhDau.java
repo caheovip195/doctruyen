@@ -38,7 +38,6 @@ public class TruyenDaDanhDau extends Fragment {
     AdapterLike adapterLike;
     ImageView imgSearch;
     EditText edtSearch;
-    TextView txtClose;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -77,14 +76,18 @@ public class TruyenDaDanhDau extends Fragment {
                 }
                 else {
                     SQLiteDatabase database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
-                    Cursor cursor =database.rawQuery("select title_app,content_app,author_app,image from ThichSubCate where title_app like ?"
+                    Cursor cursor =database.rawQuery("select title_app,content_app,author_app,image,sub_cat_id,cat_id,app_id from ThichSubCate where title_app like ?"
                             ,new String[]{"%"+edtSearch.getText().toString()+"%"});
                     ds.clear();
                     while (cursor.moveToNext()){
                         ds.add(new DanhSachLike(cursor.getString(0),
                                 cursor.getString(3)
                                 ,cursor.getString(1),
-                                cursor.getColumnName(2)));
+                                cursor.getString(2),
+                                cursor.getString(4),
+                                cursor.getString(5),
+                                cursor.getString(6)));
+                        Log.e("tentacgia",cursor.getString(2));
                     }
                     cursor.close();
                     if(ds.size()<=0){
@@ -98,53 +101,21 @@ public class TruyenDaDanhDau extends Fragment {
                 }
             }
         });
-       /* edtSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                 Log.e("beforeChange",s.toString());
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.e("onChangeText",s.toString());
-                ds.clear();
-                SQLiteDatabase database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
-                Cursor cursor =database.rawQuery("select title_app,content_app,author_app,image from ThichSubCate where title_app like ?"
-                        ,new String[]{"%"+s.toString()+"%"});
-                while (cursor.moveToNext()){
-                    ds.add(new DanhSachLike(cursor.getString(0),
-                            cursor.getString(3)
-                            ,cursor.getString(1),
-                            cursor.getColumnName(2)));
-                }
-                cursor.close();
-                if(ds.size()<=0){
-                    TextView button =new TextView(getActivity());
-                    button.setText("Không tìm thấy!");
-                    button.setTextSize(17);
-                    button.setTextColor(Color.BLACK);
-                    button.setGravity(Gravity.CENTER);
-                    LinearLayout layout =view.findViewById(R.id.layout_like);
-                    layout.setGravity(Gravity.CENTER);
-                    layout.addView(button);
-                    layout.removeAllViews();
-                }
-                else {
-                    adapterLike.notifyDataSetChanged();
-                }*/
-
     }
 
     private void loaddata(){
         ds.clear();
         SQLiteDatabase database =getActivity().openOrCreateDatabase("doctruyen.sqlite", Context.MODE_PRIVATE,null);
-        Cursor cursor =database.rawQuery("select title_app,content_app,author_app,image from ThichSubCate",null);
+        Cursor cursor =database.rawQuery("select title_app,content_app,author_app,image,sub_cat_id,cat_id,app_id from ThichSubCate",null);
         while (cursor.moveToNext()){
             // ds.add(new SubCateLike(cursor.getString(0),cursor.getString(1),cursor.getString(2)));
             ds.add(new DanhSachLike(cursor.getString(0),
                     cursor.getString(3)
                     ,cursor.getString(1),
-                    cursor.getColumnName(2)));
+                    cursor.getString(2),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6)));
         }
         cursor.close();
         adapterLike.notifyDataSetChanged();
