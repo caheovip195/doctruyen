@@ -2,7 +2,92 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/thongtin"
     android:orientation="vertical"
     android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#84ff82"
+            android:gravity="center"
+            android:text="Thông Tin Tác Gải Thi Đàn Việt Nam"
+            android:textColor="#ff3923"
+            android:textSize="20sp" />
+
+        <com.meg7.widget.CustomShapeImageView
+            android:id="@+id/img_them"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/my_custom_background"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sach"
+            app:shape="circle" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/ebook"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:text="Tác Giả : Nguyễn Mạnh Cường"
+            android:textColor="#ff3923"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:text="Bút Danh : Thành Đô"
+            android:textColor="#ff3923"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:text="Quê Quán : Quỳnh Vinh - Quỳnh Lưu - Nghệ An"
+            android:textColor="#ff3923"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:text="Số Điện Thoại : 0986561247"
+            android:textColor="#ff3923"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:text="Hộp Thư Điện Tử : cuongback@yahoo.com"
+            android:textColor="#ff3923"
+            android:textSize="15sp" />
+
+    </LinearLayout>
 </LinearLayout>
