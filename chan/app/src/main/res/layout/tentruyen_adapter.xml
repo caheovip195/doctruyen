@@ -60,7 +60,8 @@
         <TextView
             android:id="@+id/doantext"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:layout_height="0dp"
             android:layout_alignBottom="@+id/lntentruyen"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -68,8 +69,8 @@
             android:layout_marginBottom="17dp"
             android:layout_toEndOf="@+id/lntentruyen"
             android:layout_toRightOf="@+id/lntentruyen"
-            android:gravity="center"
             android:textColor="#000000"
+            android:lines="3"
             android:textSize="14sp"
             android:text="1 đoạn text" />
 
@@ -80,12 +81,14 @@
             android:layout_alignBottom="@+id/lntentruyen"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_below="@+id/txtten"
+            android:layout_marginTop="41dp"
             android:layout_toEndOf="@+id/lntentruyen"
             android:layout_toRightOf="@+id/lntentruyen"
             android:gravity="right"
-            android:textSize="14sp"
             android:text="@string/t_c_gi"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/textView3"
