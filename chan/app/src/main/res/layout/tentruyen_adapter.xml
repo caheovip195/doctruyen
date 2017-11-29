@@ -39,6 +39,7 @@
             android:layout_toEndOf="@+id/lntentruyen"
             android:layout_toRightOf="@+id/lntentruyen"
             android:ellipsize="marquee"
+            android:text="1 đoạn text"
             android:gravity="center"
             android:singleLine="true"
             android:textColor="#000000"
