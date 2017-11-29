@@ -133,7 +133,8 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
             }
         });
         String desc=ds.get(position).getContent().split("<div")[0];
-        holder.doantext.setText("\t"+ Html.fromHtml(desc).toString().trim()+"...");
+        holder.doantext.setText("\t"+ Html.fromHtml(desc).toString().trim().substring(1)+"...");
+        Log.e("htmlfrom",Html.fromHtml(desc).toString().trim().substring(1)+"...");
     }
 
     @Override
