@@ -33,17 +33,17 @@
             android:id="@+id/txtten"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/tentacgia"
-            android:layout_toEndOf="@+id/lntentruyen"
-            android:layout_toRightOf="@+id/lntentruyen"
+            android:layout_alignBottom="@+id/nutlike"
+            android:layout_toEndOf="@+id/txtstt"
+            android:layout_toLeftOf="@+id/nutlike"
+            android:layout_toRightOf="@+id/txtstt"
+            android:layout_toStartOf="@+id/nutlike"
             android:ellipsize="marquee"
-            android:text="1 đoạn text"
             android:gravity="center"
             android:singleLine="true"
+            android:text="Tên Truyện"
             android:textColor="#000000"
-            android:textSize="17sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/txtstt"
@@ -56,6 +56,36 @@
             android:text="@string/_10"
             android:textColor="#ff0000"
             android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/doantext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/lntentruyen"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/txtten"
+            android:layout_marginBottom="17dp"
+            android:layout_toEndOf="@+id/lntentruyen"
+            android:layout_toRightOf="@+id/lntentruyen"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:text="1 đoạn text" />
+
+        <TextView
+            android:id="@+id/tentacgia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/lntentruyen"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@+id/lntentruyen"
+            android:layout_toRightOf="@+id/lntentruyen"
+            android:gravity="right"
+            android:textSize="14sp"
+            android:text="@string/t_c_gi"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/textView3"
@@ -74,17 +104,5 @@
             android:contentDescription="@string/todo"
             app:srcCompat="@drawable/like2" />
 
-        <TextView
-            android:id="@+id/tentacgia"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/txtstt"
-            android:layout_toLeftOf="@+id/nutlike"
-            android:layout_toRightOf="@+id/txtstt"
-            android:layout_toStartOf="@+id/nutlike"
-            android:gravity="center"
-            android:text="@string/t_c_gi"
-            android:textColor="#000000" />
     </RelativeLayout>
 </LinearLayout>
