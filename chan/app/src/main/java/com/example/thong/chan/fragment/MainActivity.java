@@ -46,9 +46,17 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        changeFragment(new ManHinhChinh());
+        //changeFragment(new ManHinhChinh());
+        changeFragment(new DocTruyen());
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentManager manager =getFragmentManager();
+        FragmentTransaction transaction =manager.beginTransaction();
+        transaction.addToBackStack("m1");
+        transaction.replace(R.id.content_frame,new DocTruyen());
+        transaction.commit();
+        toolbar.setTitle("Đọc Truyện");
     }
 
    @Override
@@ -73,12 +81,12 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -109,11 +117,12 @@ public class MainActivity extends AppCompatActivity
             }
         }
          Log.e("stacksize",stackSize+"");
-        if(id== R.id.trangchu){
-            changeFragment(new ManHinhChinh());
+      /*  if(id== R.id.trangchu){
+            //changeFragment(new ManHinhChinh());
+            changeFragment(new DocTruyen());
             toolbar.setTitle("Trang Chủ");
         }
-        else
+        else*/
         if (id == R.id.doctruyen) {
             // Handle the camera action
             FragmentManager manager =getFragmentManager();

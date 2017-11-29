@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -131,6 +132,8 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
                 transaction.commit();
             }
         });
+        String desc=ds.get(position).getContent().split("<div")[0];
+        holder.doantext.setText("\t"+ Html.fromHtml(desc).toString().trim()+"...");
     }
 
     @Override
@@ -141,7 +144,7 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
     public class RecycleViewHolder extends RecyclerView.ViewHolder{
            LinearLayout layout;
            ImageView img,nutlike;
-           TextView txtten,txtstt,txtmieuta,txttacgia;
+           TextView txtten,txtstt,txtmieuta,txttacgia,doantext;
         public RecycleViewHolder(View itemView) {
             super(itemView);
             layout=itemView.findViewById(R.id.listten);
@@ -150,7 +153,9 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
             txtstt=itemView.findViewById(R.id.txtstt);
             nutlike=itemView.findViewById(R.id.nutlike);
             txttacgia=itemView.findViewById(R.id.tentacgia);
+            doantext=itemView.findViewById(R.id.doantext);
             //txtmieuta=itemView.findViewById(R.id.txtstt);
+
         }
     }
 }
