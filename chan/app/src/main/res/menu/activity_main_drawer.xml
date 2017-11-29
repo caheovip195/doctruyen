@@ -4,10 +4,10 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
+       <!-- <item
             android:id="@+id/trangchu"
             android:icon="@drawable/home"
-            android:title="Trang Chủ" />
+            android:title="Trang Chủ" />-->
         <item
             android:id="@+id/doctruyen"
             android:icon="?android:attr/actionModeCopyDrawable"

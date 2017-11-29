@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -87,7 +88,16 @@ public class DocContent extends Fragment {
         Log.e("content",content);
         txttacgia.setText("Tác giả : "+tentacgia);
         webview.getSettings().setJavaScriptEnabled(true);
-        webview.loadData(content,"text/html","utf-8");
+        WebSettings settings = webview.getSettings();
+        settings.setDefaultTextEncodingName("utf-8");
+        //String scandinavianCharacters = "øæå";
+
+// Won't render correctly
+       // webView.loadData(scandinavianCharacters, "text/html", "UTF-8");
+
+// Will render correctly
+       // webview.loadDataWithBaseURL(content, scandinavianCharacters, "text/html", "UTF-8", null);
+        webview.loadData(content,"text/html; charset=utf-8", "utf-8");
         webview.setWebViewClient(new WebViewClient());
         Log.e("content",content);
         return view;
