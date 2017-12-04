@@ -48,7 +48,7 @@ public class ManHinhChinh extends Fragment {
             }
         });
 
-        img=(ImageView) view.findViewById(R.id.imBaithuoc);
+        img=(ImageView) view.findViewById(R.id.imdoctruyen);
         img.setOnClickListener(new View.OnClickListener() {
 
             @Override

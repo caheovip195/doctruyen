@@ -4,13 +4,21 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.InflateException;
+import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,6 +30,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.thong.chan.R;
 
@@ -63,15 +73,15 @@ public class MainActivity extends AppCompatActivity
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         toolbar.setNavigationIcon(R.drawable.iconnavigation);
-    }
+   }
+
     @Override
     public void onBackPressed() {
 
-        if(getFragmentManager().getBackStackEntryCount()>0){
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
-            Log.e("tagfm","fmChuDe");
-        }
-        else{
+            Log.e("tagfm", "fmChuDe");
+        } else {
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             } else {
@@ -81,13 +91,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-   /* @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }*/
-
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -96,8 +104,32 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.chiasebaiviet) {
+            String linkApp = "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName();
+            Intent intenShare = new Intent(Intent.ACTION_SEND);
+            intenShare.setType("text/plain");
+            intenShare.putExtra(Intent.EXTRA_TEXT, linkApp);
+            startActivity(Intent.createChooser(intenShare, "Chia sẻ app với bạn bè của bạn"));
+        } else if (id == R.id.danhdaudadoc) {
+            FragmentManager manager = getFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack("");
+            transaction.replace(R.id.content_frame, new TruyenDaDanhDau());
+            transaction.commit();
+            toolbar.setTitle("Truyện Đã Đánh Dấu");
+        }else if (id == R.id.thongtinvetacgia) {
+            FragmentManager manager = getFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack("");
+            transaction.replace(R.id.content_frame, new TacGia());
+            transaction.commit();
+        }
+        else if(id==R.id.setting){
+            FragmentManager manager = getFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack("");
+            transaction.replace(R.id.content_frame, new Thietlap());
+            transaction.commit();
         }
 
         return super.onOptionsItemSelected(item);
