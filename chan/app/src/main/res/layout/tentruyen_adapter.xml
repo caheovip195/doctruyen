@@ -92,21 +92,13 @@
                     <TextView
                         android:id="@+id/doantext"
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="0.8"
+                        android:layout_marginLeft="5dp"
                         android:maxLines="3"
-                        android:textSize="12sp"
-                        android:textColor="#000000"/>
-
-                    <TextView
-                        android:id="@+id/tentacgia"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:layout_gravity="bottom"
-                        android:layout_weight="0.2"
-                        android:gravity="right"
                         android:textColor="#000000"
-                        android:textSize="13sp" />
+                        android:textSize="12sp" />
+
                 </LinearLayout>
 
             </LinearLayout>
