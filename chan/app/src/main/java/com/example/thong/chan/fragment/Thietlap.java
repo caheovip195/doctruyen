@@ -2,6 +2,8 @@ package com.example.thong.chan.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ShareActionProvider;
 import android.widget.Spinner;
 
 import com.example.thong.chan.R;
@@ -22,7 +25,7 @@ public class Thietlap extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.thiet_lap, container, false);
         spinner = view.findViewById(R.id.spinner);
-        ArrayList<String> arrayList = new ArrayList<String>();
+        final ArrayList<String> arrayList = new ArrayList<String>();
         arrayList.add("Bình Thường");
         arrayList.add("Ban Đêm");
         arrayList.add("Ban ngày");
@@ -32,8 +35,12 @@ public class Thietlap extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 //click cho cac item trong spiner.
+                SharedPreferences pre = getActivity().getSharedPreferences("regime",Context.MODE_PRIVATE);
+                SharedPreferences.Editor sEditor=pre.edit();
+                sEditor.putInt("regime", Integer.parseInt(arrayList.get(position)));
+                sEditor.commit();
+
 
             }
 
@@ -42,8 +49,10 @@ public class Thietlap extends Fragment {
 
             }
         });
+
+
         spinner2 = view.findViewById(R.id.spinner2);
-        ArrayList<String> arrayList2 = new ArrayList<String>();
+        final ArrayList<String> arrayList2 = new ArrayList<String>();
         arrayList2.add("10");
         arrayList2.add("15");
         arrayList2.add("20");
@@ -55,11 +64,13 @@ public class Thietlap extends Fragment {
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 //click cho cac item trong spiner.
 
+                SharedPreferences pre = getActivity().getSharedPreferences("setting",Context.MODE_PRIVATE);
+                SharedPreferences.Editor sEditor=pre.edit();
+                sEditor.putInt("fontsize", Integer.parseInt(arrayList2.get(position)));
+                sEditor.commit();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -75,3 +86,4 @@ public class Thietlap extends Fragment {
         transaction.addToBackStack(null);
     }
 }
+   // setTheme(R.style.Theme_Day);
