@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,7 +71,7 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
         holder.txtstt.setText((position+1)+"");
         String sub =ds.get(position).getContent().substring(0,30);
         holder.txtten.setText(ds.get(position).getTitle());
-        holder.txttacgia.setText("Tác giả: "+ds.get(position).getAuthor_app());
+     //   holder.txttacgia.setText(""+ds.get(position).getAuthor_app());
        // holder.txtmieuta.setText(sub);
         holder.nutlike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +113,27 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
         });
         Log.e("position",(position+1)+"");
         Picasso.with(activity).load(ds.get(position).getThumbnail()).error(R.drawable.sach).into(holder.img);
-        holder.layout.setOnClickListener(new View.OnClickListener() {
+        /*holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle =new Bundle();
+                bundle.putString("content",ds.get(position).getContent());
+                bundle.putString("tacgia",ds.get(position).getAuthor_app());
+                bundle.putString("cat_id",ds.get(position).getCat_id());
+                bundle.putString("sub_cat_id",ds.get(position).getSub_cat_id());
+                bundle.putString("app_id",ds.get(position).getId());
+                bundle.putString("image",ds.get(position).getThumbnail());
+                bundle.putString("title",ds.get(position).getTitle());
+                DocContent content =new DocContent();
+                content.setArguments(bundle);
+                FragmentManager manager =activity.getFragmentManager();
+                FragmentTransaction transaction =manager.beginTransaction();
+                transaction.replace(R.id.content_frame,content);
+                transaction.addToBackStack("doccontent");
+                transaction.commit();
+            }
+        });*/
+        holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle =new Bundle();
@@ -133,7 +154,37 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
             }
         });
         String desc=ds.get(position).getContent().split("<div")[0];
-        holder.doantext.setText(Html.fromHtml(desc).toString().trim().substring(1)+"...");
+        holder.doantext.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        holder.doantext.setSingleLine(false);
+        // holder.doantext.setText("\t"+ Html.fromHtml(desc).toString().trim().substring(1)+"...");
+        desc = desc.replaceAll("<img.+/(img)*>", "");
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            holder.doantext.setText(Html.fromHtml(desc,Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            holder.doantext.setText(Html.fromHtml(desc));
+        }
+        holder.doantext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle =new Bundle();
+                bundle.putString("content",ds.get(position).getContent());
+                bundle.putString("tacgia",ds.get(position).getAuthor_app());
+                bundle.putString("cat_id",ds.get(position).getCat_id());
+                bundle.putString("sub_cat_id",ds.get(position).getSub_cat_id());
+                bundle.putString("app_id",ds.get(position).getId());
+                bundle.putString("image",ds.get(position).getThumbnail());
+                bundle.putString("title",ds.get(position).getTitle());
+                DocContent content =new DocContent();
+                content.setArguments(bundle);
+                FragmentManager manager =activity.getFragmentManager();
+                FragmentTransaction transaction =manager.beginTransaction();
+                transaction.replace(R.id.content_frame,content);
+                transaction.addToBackStack("doccontent");
+                transaction.commit();
+            }
+        });
+/*        holder.doantext.setText("\t"+ Html.fromHtml(desc).toString().trim().substring(1)+"...");
+        Log.e("htmlfrom",Html.fromHtml(desc).toString().trim().substring(1)+"...");*/
     }
 
     @Override
