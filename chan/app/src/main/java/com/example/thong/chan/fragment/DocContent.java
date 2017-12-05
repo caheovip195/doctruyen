@@ -23,7 +23,7 @@ import com.example.thong.chan.R;
 
 public class DocContent extends Fragment {
     ImageView imglike;
-    TextView txttacgia;
+   // TextView txttacgia;
     WebView webview;
     SQLiteDatabase database;
     @Nullable
@@ -32,7 +32,7 @@ public class DocContent extends Fragment {
         View view =inflater.inflate(R.layout.doccontent,container,false);
         webview=view.findViewById(R.id.doccontent);
         imglike=view.findViewById(R.id.like_bentrong);
-        txttacgia=view.findViewById(R.id.tacgia_bentrong);
+       // txttacgia=view.findViewById(R.id.tacgia_bentrong);
         Bundle bundle =getArguments();
         final String content=bundle.getString("content");
         final String tentacgia=bundle.getString("tacgia");
@@ -86,7 +86,7 @@ public class DocContent extends Fragment {
         });
         //webview.setBackgroundColor(Color.BLUE);
         Log.e("content",content);
-        txttacgia.setText("Tác giả : "+tentacgia);
+        //txttacgia.setText("Tác giả : "+tentacgia);
         webview.getSettings().setJavaScriptEnabled(true);
         WebSettings settings = webview.getSettings();
         settings.setDefaultTextEncodingName("utf-8");
