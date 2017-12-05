@@ -32,7 +32,7 @@ public class DocContent extends Fragment {
         View view =inflater.inflate(R.layout.doccontent,container,false);
         webview=view.findViewById(R.id.doccontent);
         imglike=view.findViewById(R.id.like_bentrong);
-        txttacgia=view.findViewById(R.id.tacgia_bentrong);
+        //txttacgia=view.findViewById(R.id.tacgia_bentrong);
         Bundle bundle =getArguments();
         final String content=bundle.getString("content");
         final String tentacgia=bundle.getString("tacgia");
