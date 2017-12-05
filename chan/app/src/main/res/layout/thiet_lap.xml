@@ -96,7 +96,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:textSize="20sp"
+            android:text="Truyện Thơ"
+            android:textSize="16sp"
             android:layout_marginTop="5dp"
             android:textColor="#000"/>
 
@@ -114,7 +115,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:textSize="20sp"
+            android:text="Bởi phần mềm của topseoapp.com"
+            android:textSize="16sp"
             android:layout_marginTop="5dp"
             android:textColor="#000"/>
     </LinearLayout>

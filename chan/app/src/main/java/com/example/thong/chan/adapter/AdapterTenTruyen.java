@@ -203,7 +203,7 @@ public class AdapterTenTruyen  extends RecyclerView.Adapter<AdapterTenTruyen.Rec
             txtten=itemView.findViewById(R.id.txtten);
             txtstt=itemView.findViewById(R.id.txtstt);
             nutlike=itemView.findViewById(R.id.nutlike);
-            txttacgia=itemView.findViewById(R.id.tentacgia);
+           // txttacgia=itemView.findViewById(R.id.tentacgia);
             doantext=itemView.findViewById(R.id.doantext);
             //txtmieuta=itemView.findViewById(R.id.txtstt);
 
