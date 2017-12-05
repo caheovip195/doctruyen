@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -44,6 +45,11 @@ public class AdapterChuDe extends RecyclerView.Adapter<AdapterChuDe.RecycleViewH
     @Override
     public void onBindViewHolder(final RecycleViewHoder holder, final int position) {
        // final SQLiteDatabase database =activity.openOrCreateDatabase("doctruyen.sqlite", Context.MODE_PRIVATE,null);
+
+        SharedPreferences sharedPreferences =activity.getSharedPreferences("setting",Context.MODE_PRIVATE);
+        int fontsize=sharedPreferences.getInt("fontsize",20);
+        holder.txt.setTextSize(fontsize);
+
         holder.txt.setText(ds.get(position).getSub_cat_name());
              holder.txtmieuta.setText(catename);
              holder.txtstt.setText((position+1)+"");
