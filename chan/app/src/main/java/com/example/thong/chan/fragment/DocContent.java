@@ -23,7 +23,7 @@ import com.example.thong.chan.R;
 
 public class DocContent extends Fragment {
     ImageView imglike;
-   // TextView txttacgia;
+    TextView hientieudemandoc;
     WebView webview;
     SQLiteDatabase database;
     @Nullable
@@ -32,7 +32,7 @@ public class DocContent extends Fragment {
         View view =inflater.inflate(R.layout.doccontent,container,false);
         webview=view.findViewById(R.id.doccontent);
         imglike=view.findViewById(R.id.like_bentrong);
-       // txttacgia=view.findViewById(R.id.tacgia_bentrong);
+        hientieudemandoc=view.findViewById(R.id.hientieudemandoc);
         Bundle bundle =getArguments();
         final String content=bundle.getString("content");
         final String tentacgia=bundle.getString("tacgia");
@@ -42,6 +42,7 @@ public class DocContent extends Fragment {
         final String image =bundle.getString("image");
         Log.e("tentacgia",tentacgia);
         final String title =bundle.getString("title");
+        hientieudemandoc.setText(title);
         boolean flag =false;
         database=getActivity().openOrCreateDatabase("doctruyen.sqlite",Context.MODE_PRIVATE,null);
         Cursor cursor =database.rawQuery("select cat_id,sub_cat_id,app_id from ThichSubCate",null);
