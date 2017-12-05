@@ -14,7 +14,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-
             app:titleTextColor="#000"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -24,4 +23,3 @@
     <include layout="@layout/content_main" />
 
 </android.support.design.widget.CoordinatorLayout>
-<!--?attr/actionBarSize-->
